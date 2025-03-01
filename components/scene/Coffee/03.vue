@@ -192,8 +192,8 @@ function saveAsPNG() {
 
 <style scoped>
 .mask-letter {
-    -webkit-mask-image: url(./images/coffee-03/mask-letter.png);
-    mask-image: url(./images/coffee-03/mask-letter.png);
+    -webkit-mask-image: url(/images/coffee-03/mask-letter.png);
+    mask-image: url(/images/coffee-03/mask-letter.png);
     mask-repeat: no-repeat;
     -webkit-mask-position: center;
     mask-position: center;
@@ -218,7 +218,7 @@ function saveAsPNG() {
     appearance: none;
     width: 15%;
     height: auto;
-    background-image: url(./images/coffee-03/letter-thumb.png);
+    background-image: url(/images/coffee-03/letter-thumb.png);
     background-size: contain;
     background-repeat: no-repeat;
     aspect-ratio: 80 / 50;
@@ -229,7 +229,7 @@ function saveAsPNG() {
 .slider::-moz-range-thumb {
     width: 10%;
     height: auto;
-    background-image: url(./images/coffee-03/letter-thumb.png);
+    background-image: url(/images/coffee-03/letter-thumb.png);
     background-size: contain;
     background-repeat: no-repeat;
     aspect-ratio: 80 / 60;
