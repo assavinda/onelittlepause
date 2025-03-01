@@ -33,7 +33,7 @@ provide("preloaded", images);
 //--SCENES MANAGEMENT--
 
 //current scene (state)
-const currentScene = ref('Zones');
+const currentScene = ref('Home');
 
 //set scene function
 function setScene(sceneName) {

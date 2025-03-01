@@ -33,7 +33,7 @@
         </button>
 
         <!-- fg fade in -->
-        <div class="absolute top-0 left-0 w-full h-full bg-white fade-out pointer-events-none"></div>
+        <GeneralLoading :progress="progressPercent" :class="isLoaded ? 'fade-out' : '' "></GeneralLoading>
 
         <!-- fg fade out -->
         <div @animationend="$emit('nextpage',game)" class="absolute top-0 left-0 w-full h-full bg-white pointer-events-none" :class="isGameSelected ? 'fade-in' : 'opacity-0 pointer-events-none' "></div>
@@ -46,6 +46,28 @@
 const images = inject("preloaded");
 const game = ref('')
 const isGameSelected = ref(false);
+
+// check if all img has loaded
+const isLoaded = ref(false);
+const progressPercent = ref(0)
+
+onMounted(() => {
+    checkImagesLoaded((progress) => {
+        if (isLoaded.value == true) return 
+
+        if (progress == 100) {
+            setTimeout(() => {
+                isLoaded.value = true;
+            },1000)
+            console.log("all images loaded");
+        }
+        else {
+            console.log(progressPercent.value)
+        }
+        progressPercent.value = progress
+    });
+});
+
 </script>
 
 <style scoped>

@@ -87,7 +87,7 @@
         </div>
 
         <!-- fg fade in -->
-        <div class="absolute top-0 left-0 w-full h-full bg-white pointer-events-none z-[310]" :class="isLoaded ? 'fade-out' : '' "></div>
+        <GeneralLoading :progress="progressPercent" :class="isLoaded ? 'fade-out' : '' "></GeneralLoading>
 
     </GeneralContainer>
 </template>
@@ -99,13 +99,27 @@ const images = inject("preloaded");
 
 // check if all img has loaded
 const isLoaded = ref(false);
+const progressPercent = ref(0)
 
 onMounted(() => {
-    checkImagesLoaded((loaded) => {
-        isLoaded.value = loaded;
-        console.log("all images loaded");
+    checkImagesLoaded((progress) => {
+        if (isLoaded.value == true) return 
+
+        if (progress == 100) {
+            setTimeout(() => {
+                isLoaded.value = true;
+            },1000)
+            console.log("all images loaded");
+        }
+        else {
+            console.log(progressPercent.value)
+        }
+        progressPercent.value = progress
     });
+    showDrawing();
+    currentFace.value = localStorage.getItem('savedFace');
 });
+
 
 //canvas
 const canvasWidth = ref(62);
