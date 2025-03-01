@@ -3,9 +3,13 @@
 
     <SceneHome v-if="currentScene === 'Home'" @nextpage="setScene('Zones')" />
 
-    <SceneZones v-if="currentScene === 'Zones'" @bath="setScene('Bath01')" @coffee="setScene('Coffee01')" />
+    <SceneZones v-if="currentScene === 'Zones'" @nextpage="setScene" />
 
+    <!-- Bath Games Section -->
 
+    <!-- Coffee Games Section -->
+    <SceneCoffee01 v-if="currentScene === 'Coffee01'"></SceneCoffee01>
+    
   </section>
 </template>
 

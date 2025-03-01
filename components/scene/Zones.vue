@@ -24,22 +24,28 @@
 
         <!-- buttons -->
 
-        <button @click="console.log('bath')" class="absolute top-[20%] left-[15%] w-[36%]">
+        <button @click="isGameSelected = true; game = 'Bath01'" class="absolute top-[20%] left-[15%] w-[36%]">
             <img :src="images['zones-bathtime.png']">
         </button>
 
-        <button @click="console.log('coffee')" class="absolute top-[50%] left-[15%] w-[36%]">
+        <button @click="isGameSelected = true; game = 'Coffee01'" class="absolute top-[50%] left-[15%] w-[36%]">
             <img :src="images['zones-superrelax.png']">
         </button>
 
         <!-- fg fade in -->
         <div class="absolute top-0 left-0 w-full h-full bg-white fade-out pointer-events-none"></div>
 
+        <!-- fg fade out -->
+        <div @animationend="$emit('nextpage',game)" class="absolute top-0 left-0 w-full h-full bg-white pointer-events-none" :class="isGameSelected ? 'fade-in' : 'opacity-0 pointer-events-none' "></div>
+
+
     </GeneralContainer>
 </template>
 
 <script setup>
 const images = inject("preloaded");
+const game = ref('')
+const isGameSelected = ref(false);
 </script>
 
 <style scoped>
