@@ -4,45 +4,45 @@
         <!-- background images -->
 
         <div class="absolute top-0 left-0">
-            <img :src="images['home-home-bg.png']">
+            <img :src="images['home-home-bg.webp']">
         </div>
 
         <div class="absolute top-[27%] left-[5%] w-[47%]">
-            <img :src="images['home-building-01.png']">
+            <img :src="images['home-building-01.webp']">
         </div>
 
         <div class="absolute top-[24%] left-[50%] w-[47%] rotate-[5deg]">
-            <img :src="images['home-building-02.png']">
+            <img :src="images['home-building-02.webp']">
         </div>
 
         <div class="absolute top-0 left-0">
-            <img :src="images['home-homeground-bg.png']">
+            <img :src="images['home-homeground-bg.webp']">
         </div>
 
         <div class="absolute top-[13%] left-[41.5%] w-[37%] smoke">
-            <img :src="images['home-smoke.png']">
+            <img :src="images['home-smoke.webp']">
         </div>
 
         <div class="absolute top-[31%] left-[25.5%] w-[47%]">
-            <img :src="images['home-house.png']">
+            <img :src="images['home-house.webp']">
         </div>
 
         <div class="absolute top-[35%] left-[50%] w-[65%] rotate-[5deg] carpink">
-            <img :src="images['home-car-pink.png']">
+            <img :src="images['home-car-pink.webp']">
         </div>
 
         <div class="absolute top-[35%] left-[-10%] w-[67%] rotate-[5deg] carpurple">
-            <img :src="images['home-car-purple.png']">
+            <img :src="images['home-car-purple.webp']">
         </div>
 
         <div class="absolute top-[-4%] left-[29%] w-[40%] logo">
-            <img :src="images['home-logo.png']">
+            <img :src="images['home-logo.webp']">
         </div>
 
         <!-- play button -->
 
         <button @touchstart="isStartGame = true" class="absolute top-[80%] left-[39%] w-[20%] cursor-pointer playbtn">
-            <img :src="images['home-play-btn.png']">
+            <img :src="images['home-play-btn.webp']">
         </button>
 
         <!-- fg fade out -->

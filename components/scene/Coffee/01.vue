@@ -3,7 +3,7 @@
         <!-- background images -->
 
         <div class="absolute top-0 left-0">
-            <img :src="images['coffee-01-bg-coffee01.jpg']">
+            <img :src="images['coffee-01-bg-coffee01.webp']">
         </div>
 
         <!-- ML frame -->
@@ -13,7 +13,7 @@
 
         <!-- Steam -->
         <div class="absolute top-[35%] left-[0%] w-[29%] steam">
-            <img :src="images['coffee-01-steam.png']">
+            <img :src="images['coffee-01-steam.webp']">
         </div>
 
         <!-- Coffee Mix -->
@@ -22,7 +22,7 @@
         </div>
 
         <div class="absolute top-[55%] left-[43%] w-[25%] z-[16]">
-            <img :src="images['coffee-01-reflect.png']">
+            <img :src="images['coffee-01-reflect.webp']">
         </div>
 
         <!-- Coffee Pour -->
@@ -46,7 +46,7 @@
             <img ref="coffeeFill" class="w-[100%]" :src="images['coffee-01-coffee-fill.png']" :style=" { transform: `translateY(${fill+7}%)` }">
             <div class="flex justify-center">
                 <div class="absolute w-[75%] z-[12]" :style="{ top: `${fill-9}%` }"> 
-                    <img :src="images['coffee-01-surface.png']">
+                    <img :src="images['coffee-01-surface.webp']">
                 </div>
             </div>
         </div>
@@ -90,7 +90,7 @@
         <div class="absolute flex w-[100%] h-[100%] top-0 left-0 z-[200] justify-center backdrop-blur-xs transition-all duration-300" :class="isSuggestShow ? 'opacity-100' : 'opacity-0 pointer-events-none'">
             <div class="w-full h-full opacity-25"></div>
             <div class="absolute w-[65%] top-[-3%]">
-                <img :src="images['coffee-01-suggest-coffee01.png']">
+                <img :src="images['coffee-01-suggest-coffee01.webp']">
             </div>
             <div class="absolute top-[70%] w-[8%] cursor-pointer" @touchstart="isSuggestShow = false">
                 <img :src="images['general-X-icon.png']">
@@ -286,14 +286,14 @@ watch(isFailed, (newVal) => {
 
 let framerate = 80;
 
-const waterCurrentFrame = ref('coffee-01-waterpour3.png')
+const waterCurrentFrame = ref('coffee-01-waterpour3.webp')
 let waterInterval
 
 function animateWater() {
     let frame = 1;
     waterInterval = setInterval(() => {
         if (frame > 3) frame = 1;
-        waterCurrentFrame.value = `coffee-01-waterpour${frame}.png`;
+        waterCurrentFrame.value = `coffee-01-waterpour${frame}.webp`;
         frame++;
     }, framerate);
 }
