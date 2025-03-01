@@ -93,6 +93,8 @@
 </template>
 
 <script setup>
+import html2canvas from 'html2canvas';
+
 const images = inject("preloaded");
 
 // check if all img has loaded
