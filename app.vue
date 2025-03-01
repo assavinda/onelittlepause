@@ -8,12 +8,23 @@
     <!-- Bath Games Section -->
 
     <!-- Coffee Games Section -->
-    <SceneCoffee01 v-if="currentScene === 'Coffee01'"></SceneCoffee01>
+    <SceneCoffee01 v-if="currentScene === 'Coffee01'" @nextpage="setScene('Coffee02')"></SceneCoffee01>
+
+    <SceneCoffee02 v-if="currentScene === 'Coffee02'" @nextpage="setScene('Coffee03')"></SceneCoffee02>
+
+    <SceneCoffee03 v-if="currentScene === 'Coffee03'" @nextpage="setScene('')"></SceneCoffee03>
+
     
   </section>
 </template>
 
 <script setup>
+// use head
+useHead({
+  meta: [
+    { name: "viewport", content: "width=device-width, initial-scale=1.0, user-scalable=no" }
+  ]
+});
 
 //use image preloader
 const { images } = useImagePreloader();
@@ -22,7 +33,7 @@ provide("preloaded", images);
 //--SCENES MANAGEMENT--
 
 //current scene (state)
-const currentScene = ref('Coffee01');
+const currentScene = ref('Zones');
 
 //set scene function
 function setScene(sceneName) {
@@ -58,5 +69,18 @@ img {
 
 .fade-in {
   animation: fade 0.7s reverse ease forwards;
+}
+
+@keyframes nextbtn {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+.next {
+    animation: nextbtn 0.5s infinite alternate ease;
 }
 </style>

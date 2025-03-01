@@ -52,7 +52,7 @@
         </div>
 
         <!-- Pot (Dragable) -->
-        <div ref="pot" @touchstart="startDrag" class="absolute left-0 top-0 w-[30%] z-[190] cursor-grab" :class="isPouring ? 'rotate-[-42deg]' : '' " :style="{ top: `${pos.top}%`, left: `${pos.left}%`}">
+        <div @touchstart="startDrag" class="absolute left-0 top-0 w-[30%] z-[190] cursor-grab" :class="isPouring ? 'rotate-[-42deg]' : '' " :style="{ top: `${pos.top}%`, left: `${pos.left}%`}">
             <img :src="images['coffee-01-potnew.png']">
         </div>
 
@@ -65,14 +65,63 @@
             </div>
         </div>
 
+        <!-- Next Button -->
+        <div @click="isGoingToNext = true" class="absolute top-[72%] left-[80%] w-[20%] cursor-pointer" :class="isSuccess ? 'opacity-100 z-[201] next' : 'opacity-75 pointer-events-none'">
+            <img :src="images['coffee-01-butt.png']">
+        </div>
+
+        <!-- Popups -->
+
+        <div class="absolute flex w-[100%] h-[100%] top-0 left-0 z-[200] justify-center pointer-events-none backdrop-blur-xs transition-all duration-300" :class="isFailed ? 'opacity-100' : 'opacity-0'">
+            <div class="w-full h-full opacity-25"></div>
+            <div class="absolute top-0 left-0">
+                <img @transitionend="isFailed ? restart() : console.log('not here')" :src="images['coffee-01-failed.png']" class="transition-all duration-700" :class="isFailed ? 'scale-[1] opacity-100' : 'scale-[3] opacity-0'">
+            </div>
+        </div>
+
+        <div class="absolute flex w-[100%] h-[100%] top-0 left-0 z-[200] justify-center pointer-events-none backdrop-blur-xs transition-all duration-300" :class="isSuccess ? 'opacity-100' : 'opacity-0'">
+            <div class="w-full h-full opacity-25"></div>
+            <div class="absolute top-0 left-0">
+                <img @transitionend="console.log('lets go')" :src="images['coffee-01-perfect.png']" class="transition-all duration-700" :class="isSuccess ? 'scale-[1] opacity-100' : 'scale-[3] opacity-0'">
+            </div>
+        </div>
+
+        <!-- Suggestion -->
+        <div class="absolute flex w-[100%] h-[100%] top-0 left-0 z-[200] justify-center backdrop-blur-xs transition-all duration-300" :class="isSuggestShow ? 'opacity-100' : 'opacity-0 pointer-events-none'">
+            <div class="w-full h-full opacity-25"></div>
+            <div class="absolute w-[65%] top-[-3%]">
+                <img :src="images['coffee-01-suggest-coffee01.png']">
+            </div>
+            <div class="absolute top-[70%] w-[8%] cursor-pointer" @click="isSuggestShow = false">
+                <img :src="images['general-X-icon.png']">
+            </div>
+        </div>
+
         <!-- fg fade in -->
-        <div class="absolute top-0 left-0 w-full h-full bg-white fade-out pointer-events-none"></div>
+        <div class="absolute top-0 left-0 w-full h-full bg-white pointer-events-none z-[210]" :class="isLoaded ? 'fade-out' : '' "></div>
+
+        <!-- fg fade out -->
+        <div @animationend="$emit('nextpage')" class="absolute top-0 left-0 w-full h-full bg-white pointer-events-none z-[210]" :class="isGoingToNext ? 'fade-in' : 'opacity-0 pointer-events-none' "></div>
 
     </GeneralContainer>
 </template>
 
 <script setup>
 const images = inject("preloaded");
+const isSuccess = ref(false);
+const isFailed = ref(false);
+const isGoingToNext = ref(false);
+const isSuggestShow = ref(true);
+
+// check if all img has loaded
+const isLoaded = ref(false);
+
+onMounted(() => {
+    checkImagesLoaded((loaded) => {
+        isLoaded.value = loaded;
+        console.log("all images loaded");
+    });
+});
 
 // drag system ----------------------------------------------------------
 const container = ref(null);
@@ -89,9 +138,11 @@ const waterpos = ref({ top: 71, left: 57 });
 const waterheight = ref(0);
 
 const isPouring = ref(false);
+const isDragable = ref(true);
 
 function startDrag(e) {
-
+    if (!isDragable.value) return;
+    
     containerBounds == null ? getBound() : console.log('gotten');
 
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -110,6 +161,10 @@ function startDrag(e) {
 }
 
 function onDrag(e) {
+    if (!isDragable.value) {
+        stopDrag()
+        return
+    }
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
@@ -127,7 +182,6 @@ function onDrag(e) {
     } else {
         isPouring.value = false;
     }
-    console.log(isPouring.value);
 }
 
 function stopDrag() {
@@ -145,16 +199,73 @@ function stopDrag() {
 // pouring system ----------------------------------------------------------
 const fill = ref(100)
 const coffeeVolume = ref(0);
+let pourSpeed = ref(50);
 let pourInterval
 
 watch(isPouring, (newVal) => {
     if (newVal) {
         [animateWater, animateCoffee].forEach(fn => fn());
-        pourInterval = setInterval(() => {
-            coffeeVolume.value += 1;
-            fill.value = 100 - coffeeVolume.value / 2;
-        }, 50);
+        pourCoffee();
     } else {
+        clearTimeout(pourInterval);
+        pourSpeed.value = 50;
+    }
+});
+
+function pourCoffee() {
+    pourInterval = setTimeout(() => {
+        coffeeVolume.value += 1;
+        fill.value = 100 - coffeeVolume.value / 2;
+
+        if (coffeeVolume.value >= 40 && coffeeVolume.value < 80) {
+            pourSpeed.value = 60;
+        }
+        else if (coffeeVolume.value >= 80 && coffeeVolume.value < 100) {
+            pourSpeed.value = 70;
+        }
+        else if (coffeeVolume.value >= 100 && coffeeVolume.value < 110) {
+            pourSpeed.value = 80;
+        }
+        else if (coffeeVolume.value >= 110 && coffeeVolume.value < 120) {
+            pourSpeed.value = 100;
+        }
+        else if (coffeeVolume.value >= 120 && coffeeVolume.value < 160) {
+            pourSpeed.value = 120;
+        }
+
+        console.log("Pour Speed:", pourSpeed.value);
+
+        if (isPouring.value) {
+            pourCoffee();
+        }
+    }, pourSpeed.value);
+}
+
+watch(coffeeVolume, (newVal) => {
+    if (newVal > 150) {
+        setTimeout(() => {
+            isFailed.value = true;
+            console.log('failed');
+        },1000)
+    }
+    else if (newVal == 150) {
+        setTimeout(() => {
+            recheck()
+        },1000)
+    }
+
+})
+
+function recheck() {
+    if (isPouring.value == false && coffeeVolume.value == 150) {
+        isSuccess.value = true;
+        console.log('success');
+    }
+}
+
+watch(isFailed, (newVal) => {
+    if (newVal) {
+        isDragable.value = false;
         [pourInterval, waterInterval, coffeeInterval].forEach(clearInterval);
     }
 })
@@ -186,6 +297,17 @@ function animateCoffee() {
         frame++;
     }, framerate);
 }
+
+function restart() {
+    setTimeout(() => {
+        isSuccess.value = false;
+        isFailed.value = false;
+        isDragable.value = true;
+        coffeeVolume.value = 0;
+        fill.value = 100;
+    }, 1500)
+}
+
 </script>
 
 <style scoped>
