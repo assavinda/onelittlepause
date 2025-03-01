@@ -26,13 +26,13 @@
         </div>
 
         <!-- Coffee Pour -->
-        <div class="absolute top-[59.7%] left-[15%] w-[75%] h-[75%] pointer-events-none z-[17]" :class="isPouring ? 'opacity-100' : 'opacity-0'" :style="{ transform: `scaleY(${fill+36.8}%)`, transformOrigin: 'top' }">
+        <div class="absolute top-[59.7%] left-[15%] w-[75%] h-[75%] pointer-events-none z-[17]" :class="isPouring ? 'opacity-100' : 'hidden'" :style="{ transform: `scaleY(${fill+36.8}%)`, transformOrigin: 'top' }">
             <img ref="pourimg" :src="images[coffeeCurrentFrame]">
             <!-- there is an animation here -->
         </div>
 
         <!-- Water Pour -->
-        <img :src="images[waterCurrentFrame]" class="absolute w-[10%] opacity-0 z-[1]" :class="isPouring ? 'opacity-50' : 'opacity-0'" :style="{ top: `${waterpos.top}%`, left: `${waterpos.left}%`, height: `${waterheight}%`}">
+        <img :src="images[waterCurrentFrame]" class="absolute w-[10%] z-[1]" :class="isPouring ? 'opacity-50' : 'hidden'" :style="{ top: `${waterpos.top}%`, left: `${waterpos.left}%`, height: `${waterheight}%`}">
         <!-- there is an animation here -->
 
         <!-- Coffee Filter -->
@@ -244,8 +244,6 @@ function pourCoffee() {
         else if (coffeeVolume.value >= 120 && coffeeVolume.value < 160) {
             pourSpeed.value = 120;
         }
-
-        console.log("Pour Speed:", pourSpeed.value);
 
         if (isPouring.value) {
             pourCoffee();
