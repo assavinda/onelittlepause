@@ -26,16 +26,14 @@
         </div>
 
         <!-- Coffee Pour -->
-        <div class="absolute top-[59.7%] left-[15%] w-[75%] h-[75%] pointer-events-none z-[17]">
-            <img ref="pourimg" :src="images['coffee-01-cfpour3.png']">
+        <div class="absolute top-[59.7%] left-[15%] w-[75%] h-[75%] pointer-events-none z-[17]" :class="isPouring ? 'opacity-100' : 'opacity-0'" :style="{ transform: `scaleY(${fill+36.8}%)`, transformOrigin: 'top' }">
+            <img ref="pourimg" :src="images[coffeeCurrentFrame]">
             <!-- there is an animation here -->
         </div>
 
         <!-- Water Pour -->
-        <div class="absolute top-0 left-0 w-[10%] opacity-0 z-[1]">
-            <img :src="images['coffee-01-water-pour.png']">
-            <!-- there is an animation here -->
-        </div>
+        <img :src="images[waterCurrentFrame]" class="absolute w-[10%] opacity-0 z-[1]" :class="isPouring ? 'opacity-50' : 'opacity-0'" :style="{ top: `${waterpos.top}%`, left: `${waterpos.left}%`, height: `${waterheight}%`}">
+        <!-- there is an animation here -->
 
         <!-- Coffee Filter -->
         <div class="absolute top-[15.8%] left-[19.85%] w-[65%] z-[12] pointer-events-none">
@@ -44,17 +42,17 @@
 
         <!-- Coffee Mask -->
 
-        <div class="mask-coffee absolute bottom-[12.9%] left-[39.4%] z-[11] w-[21.6%] opacity-0">
-            <img ref="coffeeFill" class="w-[100%]" :src="images['coffee-01-coffee-fill.png']">
+        <div class="mask-coffee absolute bottom-[12.9%] left-[39.4%] z-[11] w-[21.6%]">
+            <img ref="coffeeFill" class="w-[100%]" :src="images['coffee-01-coffee-fill.png']" :style=" { transform: `translateY(${fill+7}%)` }">
             <div class="flex justify-center">
-                <div class="absolute w-[75%] z-[12]"> 
+                <div class="absolute w-[75%] z-[12]" :style="{ top: `${fill-9}%` }"> 
                     <img :src="images['coffee-01-surface.png']">
                 </div>
             </div>
         </div>
 
         <!-- Pot (Dragable) -->
-        <div ref="pot" @touchstart="startDrag" class="absolute left-0 top-0 w-[30%] z-[190] cursor-grab" :style="{ top: `${pos.top}%`, left: `${pos.left}%`}">
+        <div ref="pot" @touchstart="startDrag" class="absolute left-0 top-0 w-[30%] z-[190] cursor-grab" :class="isPouring ? 'rotate-[-42deg]' : '' " :style="{ top: `${pos.top}%`, left: `${pos.left}%`}">
             <img :src="images['coffee-01-potnew.png']">
         </div>
 
@@ -62,7 +60,7 @@
         <div class="absolute flex top-[22.5%] left-[43%] w-[15%]">
             <div class="text-center w-full">
                 <p class="responsive-text text-white">
-                    ML
+                    {{ coffeeVolume }} ML
                 </p>
             </div>
         </div>
@@ -86,9 +84,11 @@ function getBound() {
     containerBounds = containerElement.getBoundingClientRect();
 }
 
-//pot management
-const pot = ref(null);
 const pos = ref({ top: 50, left: 56.2 })
+const waterpos = ref({ top: 71, left: 57 });
+const waterheight = ref(0);
+
+const isPouring = ref(false);
 
 function startDrag(e) {
 
@@ -102,6 +102,8 @@ function startDrag(e) {
 
     pos.value.left = pcX - 17.5
     pos.value.top = pcY - 30
+    waterpos.value.left = pcX - 21
+    waterpos.value.top = pcY
 
     document.addEventListener('touchmove', onDrag);
     document.addEventListener('touchend', stopDrag);
@@ -116,17 +118,74 @@ function onDrag(e) {
 
     pos.value.left = pcX - 17.5
     pos.value.top = pcY - 30
+    waterpos.value.left = pcX - 24
+    waterpos.value.top = pcY + 1
 
+    if (pos.value.left <= 59 && pos.value.left >= 51 && pos.value.top <= 2) {
+        isPouring.value = true;
+        waterheight.value = 11 - pos.value.top;
+    } else {
+        isPouring.value = false;
+    }
+    console.log(isPouring.value);
 }
 
 function stopDrag() {
     pos.value.left = 56.2
     pos.value.top = 50
+    waterpos.value.left = 57
+    waterpos.value.top = 71
+    isPouring.value = false;
+    console.log(isPouring.value);
 
     document.removeEventListener('touchmove', onDrag);
     document.removeEventListener('touchend', stopDrag);
 }
 
+// pouring system ----------------------------------------------------------
+const fill = ref(100)
+const coffeeVolume = ref(0);
+let pourInterval
+
+watch(isPouring, (newVal) => {
+    if (newVal) {
+        [animateWater, animateCoffee].forEach(fn => fn());
+        pourInterval = setInterval(() => {
+            coffeeVolume.value += 1;
+            fill.value = 100 - coffeeVolume.value / 2;
+        }, 50);
+    } else {
+        [pourInterval, waterInterval, coffeeInterval].forEach(clearInterval);
+    }
+})
+
+//animate water & coffee
+
+let framerate = 80;
+
+const waterCurrentFrame = ref('coffee-01-waterpour3.png')
+let waterInterval
+
+function animateWater() {
+    let frame = 1;
+    waterInterval = setInterval(() => {
+        if (frame > 3) frame = 1;
+        waterCurrentFrame.value = `coffee-01-waterpour${frame}.png`;
+        frame++;
+    }, framerate);
+}
+
+const coffeeCurrentFrame = ref('coffee-01-cfpour3.png')
+let coffeeInterval
+
+function animateCoffee() {
+    let frame = 1;
+    coffeeInterval = setInterval(() => {
+        if (frame > 3) frame = 1;
+        coffeeCurrentFrame.value = `coffee-01-cfpour${frame}.png`;
+        frame++;
+    }, framerate);
+}
 </script>
 
 <style scoped>
@@ -138,5 +197,34 @@ function stopDrag() {
     .responsive-text {
         font-size: 3.4vw;
     }
+}
+
+.mask-coffee {
+    -webkit-mask-image: url(/images/coffee-01/mask.png);
+    mask-image: url(/images/coffee-01/mask.png);
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+}
+
+@keyframes steam {
+    0% {
+        transform: translateY(0%);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-20%);
+        opacity: 0;
+    }
+}
+
+.steam {
+    animation: steam 1.5s infinite normal ease;
+    transform-origin: top;
 }
 </style>
