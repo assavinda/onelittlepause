@@ -8,7 +8,7 @@
 
         <!-- Colors -->
         <div class="absolute flex flex-col gap-[6%] w-[5.3%] h-[46%] top-[23%] left-[77.8%]">
-            <div v-for="arrow,color in brushColors" class="colorpalette" @click="setColor(color,arrow)" :style="{ backgroundColor: color }"></div>
+            <div v-for="arrow,color in brushColors" class="colorpalette" @touchstart="setColor(color,arrow)" :style="{ backgroundColor: color }"></div>
         </div>
 
         <!-- Arrow -->
@@ -22,7 +22,7 @@
         </div>
 
         <div class="absolute top-[32%] left-[8%] w-[12.5%] space-y-[5%] flex flex-col">
-            <div @click="currentFaceIndex != 2 ? currentFaceIndex += 1 : currentFaceIndex = 0" class="flex justify-center">
+            <div @touchstart="currentFaceIndex != 2 ? currentFaceIndex += 1 : currentFaceIndex = 0" class="flex justify-center">
                 <img class="w-[60%]" :src="images['coffee-02-arrow-up.png']">
             </div>
 
@@ -30,22 +30,22 @@
                 <div>
                 <img :src="images['coffee-02-plain-faceboard.png']">
                 </div>
-                <div @click="setFace(`${facesList[currentFaceIndex]}`)" class="absolute top-[5%]">
+                <div @touchstart="setFace(`${facesList[currentFaceIndex]}`)" class="absolute top-[5%]">
                     <img :src="images[`coffee-02-eye-${facesList[currentFaceIndex]}.png`]">
                 </div>
             </div>
 
-            <div @click="currentFaceIndex != 0 ? currentFaceIndex -= 1 : currentFaceIndex = 2" class="flex justify-center">
+            <div @touchstart="currentFaceIndex != 0 ? currentFaceIndex -= 1 : currentFaceIndex = 2" class="flex justify-center">
                 <img class="w-[60%]" :src="images['coffee-02-arrow-down.png']">
             </div>
 
-            <div @click="clearCanvas" class="flex justify-center">
+            <div @touchstart="clearCanvas" class="flex justify-center">
                 <img class="w-[70%]" :src="images['coffee-02-delete-btn.png']">
             </div>
         </div>
 
         <!-- Save Button -->
-        <div @click="saveDrawing" class="absolute top-[77%] right-[3%] w-[16%]">
+        <div @touchstart="saveDrawing" class="absolute top-[77%] right-[3%] w-[16%]">
             <img :src="images['coffee-02-save-btn.png']">
         </div>
 

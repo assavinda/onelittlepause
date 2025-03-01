@@ -66,7 +66,7 @@
         </div>
 
         <!-- Next Button -->
-        <div @click="isGoingToNext = true" class="absolute top-[72%] left-[80%] w-[20%] cursor-pointer" :class="isSuccess ? 'opacity-100 z-[201] next' : 'opacity-75 pointer-events-none'">
+        <div @touchstart="isGoingToNext = true" class="absolute top-[72%] left-[80%] w-[20%]" :class="isSuccess ? 'opacity-100 z-[201] next' : 'opacity-75 z-[199] pointer-events-none'">
             <img :src="images['coffee-01-butt.png']">
         </div>
 
@@ -92,7 +92,7 @@
             <div class="absolute w-[65%] top-[-3%]">
                 <img :src="images['coffee-01-suggest-coffee01.png']">
             </div>
-            <div class="absolute top-[70%] w-[8%] cursor-pointer" @click="isSuggestShow = false">
+            <div class="absolute top-[70%] w-[8%] cursor-pointer" @touchstart="isSuggestShow = false">
                 <img :src="images['general-X-icon.png']">
             </div>
         </div>
@@ -101,7 +101,7 @@
         <GeneralLoading :progress="progressPercent" :class="isLoaded ? 'fade-out' : '' "></GeneralLoading>
 
         <!-- fg fade out -->
-        <div @animationend="$emit('nextpage')" class="absolute top-0 left-0 w-full h-full bg-white pointer-events-none z-[210]" :class="isGoingToNext ? 'fade-in' : 'opacity-0 pointer-events-none' "></div>
+        <div @animationend="$emit('nextpage')" class="absolute top-0 left-0 w-full h-full bg-white pointer-events-none z-[210]" :class="isGoingToNext ? 'fade-in' : 'opacity-0' "></div>
 
     </GeneralContainer>
 </template>

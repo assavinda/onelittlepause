@@ -53,7 +53,7 @@
         </div>
 
         <!-- Save Button -->
-        <div ref="savebtn" @click="saveAsPNG" class="absolute bottom-[5%] right-[5%] w-[10%] z-[120]" :class="isPopUpShow ? 'opacity-100 next' : 'opacity-70 pointer-events-none' ">
+        <div ref="savebtn" @touchstart="saveAsPNG" class="absolute bottom-[5%] right-[5%] w-[10%] z-[120]" :class="isPopUpShow ? 'opacity-100 next' : 'opacity-70 pointer-events-none' ">
             <img :src="images['coffee-03-save-letter.png']">
         </div>
 

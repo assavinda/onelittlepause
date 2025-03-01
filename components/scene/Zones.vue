@@ -24,11 +24,11 @@
 
         <!-- buttons -->
 
-        <button @click="isGameSelected = true; game = 'Bath01'" class="absolute top-[20%] left-[15%] w-[36%]">
+        <button @touchstart="isGameSelected = true; game = 'Bath01'" class="absolute top-[20%] left-[15%] w-[36%]">
             <img :src="images['zones-bathtime.png']">
         </button>
 
-        <button @click="isGameSelected = true; game = 'Coffee01'" class="absolute top-[50%] left-[15%] w-[36%]">
+        <button @touchstart="isGameSelected = true; game = 'Coffee01'" class="absolute top-[50%] left-[15%] w-[36%]">
             <img :src="images['zones-superrelax.png']">
         </button>
 

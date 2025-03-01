@@ -41,7 +41,7 @@
 
         <!-- play button -->
 
-        <button @click="isStartGame = true" class="absolute top-[80%] left-[39%] w-[20%] cursor-pointer playbtn">
+        <button @touchstart="isStartGame = true" class="absolute top-[80%] left-[39%] w-[20%] cursor-pointer playbtn">
             <img :src="images['home-play-btn.png']">
         </button>
 
