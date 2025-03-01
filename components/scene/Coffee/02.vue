@@ -93,7 +93,7 @@ onMounted(() => {
         if (progress == 100) {
             setTimeout(() => {
                 isLoaded.value = true;
-            },1000)
+            },1200)
             console.log("all images loaded");
         }
         else {
