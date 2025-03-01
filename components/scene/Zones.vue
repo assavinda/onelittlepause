@@ -18,9 +18,23 @@
             <img :src="images['zones-girl-arm.png']">
         </div>
         
+        <div class="absolute top-[0%] left-[21%] w-[25%] bow">
+            <img :src="images['zones-bow.png']">
+        </div>
+
+        <!-- buttons -->
+
+        <button @click="console.log('bath')" class="absolute top-[20%] left-[15%] w-[36%]">
+            <img :src="images['zones-bathtime.png']">
+        </button>
+
+        <button @click="console.log('coffee')" class="absolute top-[50%] left-[15%] w-[36%]">
+            <img :src="images['zones-superrelax.png']">
+        </button>
 
         <!-- fg fade in -->
         <div class="absolute top-0 left-0 w-full h-full bg-white fade-out pointer-events-none"></div>
+
     </GeneralContainer>
 </template>
 
@@ -41,5 +55,19 @@ const images = inject("preloaded");
 .fan {
     animation: fan 1s infinite alternate ease-in-out;
     transform-origin: 50% 80%;
+}
+
+@keyframes bow {
+    0% {
+        rotate: 5deg;
+    }
+    100% {
+        rotate: 0deg;
+    }
+}
+
+.bow {
+    animation: bow 0.5s infinite alternate ease-in-out;
+    transform-origin: center;
 }
 </style>
