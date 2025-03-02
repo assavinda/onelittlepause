@@ -53,7 +53,7 @@
         </div>
 
         <!-- fakbua -->
-        <div @touchstart="startDrag" class="absolute w-[50%] z-[14]" :class="isCoolingDown ? 'opacity-75' : '' " :style="{ top: `${pos.top}%`, left: `${pos.left}%`}">
+        <div @touchstart="startDrag" @touchend="stopDrag" class="absolute w-[50%] z-[14]" :class="isCoolingDown ? 'opacity-75' : '' " :style="{ top: `${pos.top}%`, left: `${pos.left}%`}">
             <img :src="images['bath-02-fakbua.png']">
         </div>
 
