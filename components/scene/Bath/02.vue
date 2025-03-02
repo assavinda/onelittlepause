@@ -56,7 +56,7 @@
         </div>
 
         <!-- fakbua -->
-        <div @touchstart="startDrag" @touchend="stopDrag" class="absolute w-[50%] z-[14]" :style="{ top: `${pos.top}%`, left: `${pos.left}%`}">
+        <div @touchstart="startDrag" @touchend="stopDrag" class="absolute w-[50%] z-[14]" :class="isCoolingDown ? 'opacity-75' : '' " :style="{ top: `${pos.top}%`, left: `${pos.left}%`}">
             <img :src="images['bath-02-fakbua.png']">
         </div>
 
@@ -77,7 +77,7 @@
             <img :src="images['bath-02-T-blue.png']">
         </div>
 
-        <div class="absolute top-[84%] pointer-events-none w-[7%] z-[15] transition-all" :style="{left: spongeLeft + '%'}">
+        <div class="absolute top-[84%] pointer-events-none w-[7%] z-[15]" :style="{left: spongeLeft + '%'}">
             <img :src="images['bath-02-sponge.png']">
         </div>
 
@@ -86,10 +86,10 @@
         </div>
 
         <!-- popup -->
-        <div class="absolute flex w-[100%] h-[100%] top-0 left-0 z-[200] justify-center pointer-events-none backdrop-blur-xs transition-all duration-300" :class="isSuccess ? 'opacity-100' : 'opacity-0'">
+        <div class="absolute flex w-[100%] h-[100%] top-0 left-0 z-[200] justify-center pointer-events-none backdrop-blur-xs" :class="isSuccess ? 'opacity-100' : 'opacity-0'">
             <div class="w-full h-full opacity-25"></div>
             <div class="absolute top-0 left-0">
-                <img @transitionend="console.log('lets go')" :src="images['coffee-01-perfect.png']" class="transition-all duration-700" :class="isSuccess ? 'scale-[1] opacity-100' : 'scale-[3] opacity-0'">
+                <img :src="images['coffee-01-perfect.png']" :class="isSuccess ? 'scale-[1] opacity-100' : 'scale-[3] opacity-0'">
             </div>
         </div>
 
@@ -104,6 +104,8 @@ const isDragable = ref(true)
 const isGoingToNext = ref(false)
 
 const starArray = ref([])
+
+const isCoolingDown = ref(false)
 
 watch(() => starArray.value.length, (newLength) => {
     if(newLength >= 3) {
@@ -194,19 +196,23 @@ function onDrag(e) {
 
     if(pos.value.left > 34 && pos.value.left < 56) {
         if (spongeLeft.value >= 45 && spongeLeft.value <= 51) {
-            if (isCleaning.value == false) {
+            if (isCleaning.value == false && isCoolingDown.value == false) {
                 isCleaning.value = true
+                isCoolingDown.value = true
+                // setTimeout(() => {
+                //     isCoolingDown.value = false
+                // },2000)
                 starArray.value.push('star')
                 console.log('add 1 star')
-                stopDrag()
             }
         }
         else {
-            stopDrag()
+            isCoolingDown.value = true
             isCleaning.value = false
         }
     }
     else {
+        isCoolingDown.value = false
         isCleaning.value = false
     }
 }
