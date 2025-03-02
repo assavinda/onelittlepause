@@ -6,6 +6,10 @@
     <SceneZones v-if="currentScene === 'Zones'" @nextpage="setScene" />
 
     <!-- Bath Games Section -->
+    <SceneBath01test v-if="currentScene === 'Bath01'" @nextpage="setScene('Bath02')"></SceneBath01test>
+
+    <SceneBath02 v-if="currentScene === 'Bath02'" @nextpage="setScene('')"></SceneBath02>
+
 
     <!-- Coffee Games Section -->
     <SceneCoffee01 v-if="currentScene === 'Coffee01'" @nextpage="setScene('Coffee02')"></SceneCoffee01>
@@ -33,7 +37,7 @@ provide("preloaded", images);
 //--SCENES MANAGEMENT--
 
 //current scene (state)
-const currentScene = ref('Home');
+const currentScene = ref('Bath02');
 
 //set scene function
 function setScene(sceneName) {
