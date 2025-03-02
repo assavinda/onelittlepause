@@ -1,5 +1,5 @@
 <template>
-  <section class="flex h-screen w-full bg-black justify-center">
+  <section class="flex h-screen w-screen bg-black justify-center">
 
     <SceneHome v-if="currentScene === 'Home'" @nextpage="setScene('Zones')" />
 
