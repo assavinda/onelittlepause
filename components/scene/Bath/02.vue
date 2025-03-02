@@ -149,9 +149,9 @@ function spongeMove() {
 }
 
 onMounted(() => {
-    setInterval(() => {
-        spongeMove()
-    },50)
+    // setInterval(() => {
+    //     spongeMove()
+    // },50)
 })
 
 function getBound() {
