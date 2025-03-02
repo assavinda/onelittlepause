@@ -2,7 +2,7 @@
     <section class="relative w-fit h-fit overflow-hidden bg-white">
         <!-- bg holder -->
         <div>
-            <img :src="images['home-homeground-bg.png']" class="max-w-[1024px] opacity-0">
+            <img :src="images['home-homeground-bg.png']" class="w-screen opacity-0">
         </div>
         
         <slot></slot>
