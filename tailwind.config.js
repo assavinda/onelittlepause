@@ -9,5 +9,8 @@ export default {
     extend: {},
   },
   plugins: [],
+  experimental: {
+    optimizeUniversalDefaults: true
+  }
 }
 
