@@ -1,8 +1,8 @@
 <template>
-    <section class="relative w-fit h-fit overflow-hidden bg-white">
+    <section class="containerx">
         <!-- bg holder -->
         <div>
-            <img :src="images['home-homeground-bg.png']" class="max-w-screen max-h-screen object-contain opacity-0">
+            <img :src="images['home-homeground-bg.png']" class="holder">
         </div>
         
         <slot></slot>
