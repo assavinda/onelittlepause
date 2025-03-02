@@ -11,6 +11,6 @@ export default defineNuxtConfig({
     ],
   },
   app: {
-    baseURL: '/onelittlepause-purecss/',
+    baseURL: '/onelittlepause/',
   }
 })
