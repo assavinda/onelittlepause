@@ -2,7 +2,7 @@
     <GeneralContainer ref="container">
         <!-- background images -->
         <div class="absolute top-0 left-0">
-            <img :src="images['bath-02-BG-2.png']">
+            <img :src="images['bath-02-bg-all.png']">
         </div>
 
         <!-- bubbles & girl -->
@@ -45,9 +45,6 @@
         </div>
 
         <!-- star -->
-        <div class="absolute top-[8%] right-[-14%] w-[35%] z-[10]">
-            <img :src="images['bath-02-f1.png']">
-        </div>
 
         <div class="absolute top-[17%] right-[2%] w-[5%] h-[30%] z-[10] flex flex-col items-center space-y-[40%]">
             <div v-for="star in starArray" class="w-[70%]">
@@ -61,21 +58,6 @@
         </div>
 
         <!-- temp -->
-        <div class="absolute bottom-[-42%] left-[0%] z-[15] pointer-events-none w-full">
-            <img :src="images['bath-02-temperature.png']">
-        </div>
-
-        <div class="absolute bottom-[-41.6%] left-[1%] pointer-events-none w-full z-[15]">
-            <img :src="images['bath-02-T-red.png']">
-        </div>
-
-        <div class="absolute top-[22.25%] left-[-5.7%] pointer-events-none w-full z-[15]">
-            <img :src="images['bath-02-T-green.png']">
-        </div>
-
-        <div class="absolute top-[30%] left-[-7.4%] pointer-events-none w-full z-[15]">
-            <img :src="images['bath-02-T-blue.png']">
-        </div>
 
         <div class="absolute top-[84%] pointer-events-none w-[7%] z-[15]" :style="{left: spongeLeft + '%'}">
             <img :src="images['bath-02-sponge.png']">
