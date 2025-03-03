@@ -56,10 +56,10 @@
         <!-- Hands -->
         <div class="absolute bottom-[7.85%] left-0 w-[100%]">
             <div class="relative">
-                <div id="right" @touchstart="startDrag" class="absolute bottom-0 scale-x-[-1] w-[25%]" :style="{ left: `${pos.right}%` }">
+                <div id="right" @touchstart="startDrag" class="absolute bottom-0 scale-x-[-1] w-[25%] hands" :style="{ left: `${pos.right}%` }">
                     <img :src="images['bath-01-arm1.webp']">
                 </div>
-                <div id="left" @touchstart="startDrag" class="absolute bottom-0 w-[25%]" :style="{ left: `${pos.left}%` }">
+                <div id="left" @touchstart="startDrag" class="absolute bottom-0 w-[25%] hands" :style="{ left: `${pos.left}%` }">
                     <img :src="images['bath-01-arm1.webp']">
                 </div>
             </div>
@@ -179,6 +179,20 @@ function stopDrag() {
 .face {
     animation: body alternate-reverse infinite 0.5s ease-in-out;
     transform-origin: center;
+}
+
+@keyframes hands {
+    0% {
+        transform: scaleY(1)
+    }
+    100% {
+        transform: scaleY(1.01)
+    }
+}
+
+.hands {
+    animation: hands alternate infinite 0.5s ease-in-out;
+    transform-origin: bottom;
 }
 
 .responsive-text {
