@@ -323,11 +323,13 @@ function restart() {
 <style scoped>
 .responsive-text {
     font-size: 6.04444444vh;
+    font-family: 'wintermouse', sans-serif;
 }
 
 @media (max-aspect-ratio: 16/9) {
     .responsive-text {
         font-size: 3.4vw;
+        font-family: 'wintermouse', sans-serif;
     }
 }
 

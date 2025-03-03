@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+@font-face {
+    font-family: wintermouse;
+    src: url(@/public/fonts/Mrs.Wintermouse.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: ddinya;
+    src: url(@/public/fonts/Ddinya.ttf) format('truetype');
+}

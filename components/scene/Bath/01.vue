@@ -22,7 +22,7 @@
         <div class="absolute top-[14%] left-[78%] w-[30%]">
             <p class="time-text text-responsive text-yellow-600 "> 00:{{timeString}} </p>
         </div>
-
+        
         <!-- Face -->
 
         <div class="absolute top-[-0.56%] left-0 w-[100%]">
