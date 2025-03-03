@@ -1,5 +1,5 @@
 <template>
-    <GeneralContainer>
+    <GeneralContainer ref="container">
         <!-- background images -->
         <div class="absolute top-0 left-0">
             <img :src="images['bath-01-bg-bath-game01.webp']">
@@ -53,6 +53,17 @@
             </div>
         </div>
 
+        <!-- Hands -->
+        <div class="absolute bottom-[7.85%] left-0 w-[100%]">
+            <div class="relative">
+                <div id="right" @touchstart="startDrag" class="absolute bottom-0 scale-x-[-1] w-[25%]" :style="{ left: `${hand1pos.left}%` }">
+                    <img :src="images['bath-01-arm1.webp']">
+                </div>
+                <!-- <div id="rightarm" @touchstart="startDrag" class="absolute bottom-0 w-[25%] scale-x-[-1]" :style="{ left: `${pos2.left}%` }">
+                    <img :src="images['bath-01-arm1.webp']">
+                </div> -->
+            </div>
+        </div>
 
 
     </GeneralContainer>
@@ -65,8 +76,63 @@ const cleanValue = ref(0)
 const time = ref(15)
 const timeString = ref('15')
 
+//mood
 const currentMood = ref('angry')
 
+//drag system
+const container = ref(null);
+let containerBounds = null;
+
+function getBound() {
+    const containerElement = container.value?.$el || container.value;
+    container.value = containerElement.getBoundingClientRect();
+    containerBounds = containerElement.getBoundingClientRect();
+}
+
+const hand1pos = ref({ top: 50, left: 56.2 })
+
+const isDragable = ref(true);
+
+function startDrag(e) {
+    if (!isDragable.value) return;
+    
+    containerBounds == null ? getBound() : console.log('gotten');
+
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+    const pcX = (clientX - container.value.left) / container.value.width * 100;
+    const pcY = (clientY - container.value.top) / container.value.height * 100;
+
+    hand1pos.value.left = pcX - 17.5
+    hand1pos.value.top = pcY - 30
+
+    document.addEventListener('touchmove', onDrag);
+    document.addEventListener('touchend', stopDrag);
+}
+
+function onDrag(e) {
+    if (!isDragable.value) {
+        stopDrag()
+        return
+    }
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+    const pcX = (clientX - container.value.left) / container.value.width * 100;
+    const pcY = (clientY - container.value.top) / container.value.height * 100;
+
+    hand1pos.value.left = pcX - 17.5
+    hand1pos.value.top = pcY - 30
+}
+
+function stopDrag() {
+    hand1pos.value.left = 56.2
+    hand1pos.value.top = 50
+
+    document.removeEventListener('touchmove', onDrag);
+    document.removeEventListener('touchend', stopDrag);
+}
 
 </script>
 

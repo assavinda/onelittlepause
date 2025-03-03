@@ -6,7 +6,7 @@
     <SceneZones v-if="currentScene === 'Zones'" @nextpage="setScene" />
 
     <!-- Bath Games Section -->
-    <SceneBath01 v-if="currentScene === 'Bath01'" @nextpage="setScene('Bath02')"></SceneBath01>
+    <SceneBath01test v-if="currentScene === 'Bath01'" @nextpage="setScene('Bath02')"></SceneBath01test>
 
     <SceneBath02 v-if="currentScene === 'Bath02'" @nextpage="setScene('')"></SceneBath02>
 
@@ -23,6 +23,8 @@
 </template>
 
 <script setup>
+import { SceneBath01test } from '#components';
+
 // use head
 useHead({
   meta: [
