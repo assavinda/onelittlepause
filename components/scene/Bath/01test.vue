@@ -97,7 +97,8 @@ function startDrag(e) {
     if (!isDragable.value) return;
     
     containerBounds == null ? getBound() : console.log('gotten');
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const touch = e.touches?.[0] || e.changedTouches?.[0] || e;
+    const clientX = touch.clientX;
     const pcX = (clientX - container.value.left) / container.value.width * 100;
 
     const target = e.target.closest("div");
@@ -114,7 +115,8 @@ function onDrag(e) {
         stopDrag()
         return
     }
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const touch = e.touches?.[0] || e.changedTouches?.[0] || e;
+    const clientX = touch.clientX;
     const pcX = (clientX - container.value.left) / container.value.width * 100;
 
     const target = e.target.closest("div");
