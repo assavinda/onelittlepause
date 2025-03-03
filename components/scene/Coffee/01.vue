@@ -36,7 +36,7 @@
         <!-- there is an animation here -->
 
         <!-- Coffee Filter -->
-        <div class="absolute top-[15.8%] left-[19.85%] w-[65%] z-[12] pointer-events-none">
+        <div class="absolute top-[15.8%] left-[19.85%] w-[65%] z-[9] pointer-events-none">
             <img :src="images['coffee-01-coffee-filter.png']">
         </div>
 

@@ -25,7 +25,7 @@
         
         <!-- Face -->
 
-        <div class="absolute top-[-0.56%] left-0 w-[100%]">
+        <div class="absolute top-[-0.56%] left-0 w-[100%] face">
             <img :src="images['bath-01-face.webp']">
         </div>
 
@@ -102,6 +102,20 @@ const currentMood = ref('angry')
 
 .eyebrows {
     animation: eyebrows alternate-reverse infinite 0.5s ease-in-out;
+    transform-origin: center;
+}
+
+@keyframes body {
+    0% {
+        transform: scaleX(1)
+    }
+    100% {
+        transform: scaleX(1.01)
+    }
+}
+
+.face {
+    animation: body alternate-reverse infinite 0.5s ease-in-out;
     transform-origin: center;
 }
 

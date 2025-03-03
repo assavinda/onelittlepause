@@ -92,10 +92,10 @@
         <!-- Hands -->
         <div class="absolute bottom-[7.85%] left-0 w-[100%]">
             <div class="relative">
-                <div id="leftarm" @mousedown="startDrag" @touchstart="startDrag" class="absolute bottom-0 w-[25%]" :style="{ left: `${pos1.left}%` }">
+                <div id="leftarm" @touchstart="startDrag" class="absolute bottom-0 w-[25%]" :style="{ left: `${pos1.left}%` }">
                     <img :src="images['bath-01-arm1.webp']">
                 </div>
-                <div id="rightarm" @mousedown="startDrag" @touchstart="startDrag" class="absolute bottom-0 w-[25%] scale-x-[-1]" :style="{ left: `${pos2.left}%` }">
+                <div id="rightarm" @touchstart="startDrag" class="absolute bottom-0 w-[25%] scale-x-[-1]" :style="{ left: `${pos2.left}%` }">
                     <img :src="images['bath-01-arm1.webp']">
                 </div>
             </div>
@@ -209,9 +209,7 @@ function startDrag(e) {
 
     time == 15 ? countDown(): console.log('counting')
 
-    document.addEventListener('mousemove', onDrag);
     document.addEventListener('touchmove', onDrag);
-    document.addEventListener('mouseup', stopDrag);
     document.addEventListener('touchend', stopDrag);
 }
 
@@ -318,12 +316,12 @@ function restart() {
     0% {
         transform: scale(1);
         opacity: 0.95;
-        content: url(./images/bath-01/bubble-eye2.webp);
+        content: url(/images/bath-01/bubble-eye2.webp);
     }
     100% {
         transform: scale(1.1);
         opacity: 1;
-        content: url(./images/bath-01/bubble-eye1.webp);
+        content: url(/images/bath-01/bubble-eye1.webp);
     }
 }
 
