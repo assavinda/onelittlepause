@@ -23,7 +23,23 @@
 </template>
 
 <script setup>
-import { SceneBath01test } from '#components';
+
+onMounted(() => {
+  // Prevent pinch-to-zoom
+  const preventPinch = (event) => event.preventDefault();
+  document.addEventListener("gesturestart", preventPinch, { passive: false });
+
+  // Prevent double-tap zoom
+  let lastTouchEnd = 0;
+  const preventDoubleTap = (event) => {
+      const now = Date.now();
+      if (now - lastTouchEnd <= 300) {
+          event.preventDefault();
+      }
+      lastTouchEnd = now;
+  };
+  document.addEventListener("touchend", preventDoubleTap, { passive: false });
+})
 
 // use head
 useHead({
