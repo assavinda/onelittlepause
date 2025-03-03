@@ -45,6 +45,16 @@ const currentScene = ref('Bath01');
 function setScene(sceneName) {
   currentScene.value = sceneName;
 }
+
+document.addEventListener("gesturestart", (event) => {
+    event.preventDefault(); // Prevents pinch-to-zoom
+});
+
+document.addEventListener("touchstart", (event) => {
+    if (event.touches.length > 1) {
+        event.preventDefault(); // Prevents multi-touch zoom
+    }
+}, { passive: false });
 </script>
 
 <style>

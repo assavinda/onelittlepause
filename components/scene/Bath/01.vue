@@ -185,6 +185,7 @@ function countDown() {
 }
 
 function startDrag(e) {
+    e.preventDefault();
     containerBounds == null ? getBound() : console.log('gotten');
 
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -214,6 +215,7 @@ function startDrag(e) {
 }
 
 function onDrag(e) {
+    e.preventDefault();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
 
     const pcX = (clientX - container.value.left) / container.value.width * 100;
