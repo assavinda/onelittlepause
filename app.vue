@@ -69,6 +69,11 @@ function setScene(sceneName) {
     will-change: auto !important;
 }
 
+html, body {
+    overscroll-behavior: none; /* Prevent pull-to-refresh */
+    touch-action: pan-x pan-y; /* Prevent accidental gestures */
+}
+
 body {
   overflow: hidden;
   font-family: "Kanit", serif;
