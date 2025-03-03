@@ -56,12 +56,12 @@
         <!-- Hands -->
         <div class="absolute bottom-[7.85%] left-0 w-[100%]">
             <div class="relative">
-                <div id="right" @touchstart="startDrag" class="absolute bottom-0 scale-x-[-1] w-[25%]" :style="{ left: `${hand1pos.left}%` }">
+                <div id="right" @touchstart="startDrag" class="absolute bottom-0 scale-x-[-1] w-[25%]" :style="{ left: `${pos.right}%` }">
                     <img :src="images['bath-01-arm1.webp']">
                 </div>
-                <!-- <div id="rightarm" @touchstart="startDrag" class="absolute bottom-0 w-[25%] scale-x-[-1]" :style="{ left: `${pos2.left}%` }">
+                <div id="left" @touchstart="startDrag" class="absolute bottom-0 w-[25%]" :style="{ left: `${pos.left}%` }">
                     <img :src="images['bath-01-arm1.webp']">
-                </div> -->
+                </div>
             </div>
         </div>
 
@@ -89,7 +89,7 @@ function getBound() {
     containerBounds = containerElement.getBoundingClientRect();
 }
 
-const hand1pos = ref({ top: 50, left: 56.2 })
+const pos = ref({'right' : 63.5 , 'left' : 11.8})
 
 const isDragable = ref(true);
 
@@ -97,15 +97,13 @@ function startDrag(e) {
     if (!isDragable.value) return;
     
     containerBounds == null ? getBound() : console.log('gotten');
-
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-
     const pcX = (clientX - container.value.left) / container.value.width * 100;
-    const pcY = (clientY - container.value.top) / container.value.height * 100;
 
-    hand1pos.value.left = pcX - 17.5
-    hand1pos.value.top = pcY - 30
+    const target = e.target.closest("div");
+
+    pos.value[target.id] = pcX - 15
+    pos.value[target.id === 'right' ? 'left' : 'right'] = -(pcX - 90)
 
     document.addEventListener('touchmove', onDrag);
     document.addEventListener('touchend', stopDrag);
@@ -117,18 +115,16 @@ function onDrag(e) {
         return
     }
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-
     const pcX = (clientX - container.value.left) / container.value.width * 100;
-    const pcY = (clientY - container.value.top) / container.value.height * 100;
 
-    hand1pos.value.left = pcX - 17.5
-    hand1pos.value.top = pcY - 30
+    const target = e.target.closest("div");
+
+    pos.value[target.id] = pcX - 15
+    pos.value[target.id === 'right' ? 'left' : 'right'] = -(pcX - 90)
 }
 
 function stopDrag() {
-    hand1pos.value.left = 56.2
-    hand1pos.value.top = 50
+    pos.value = {'right' : 63.5 , 'left' : 11.8}
 
     document.removeEventListener('touchmove', onDrag);
     document.removeEventListener('touchend', stopDrag);
@@ -162,7 +158,7 @@ function stopDrag() {
         transform: translateY(0%) rotate(0deg)
     }
     100% {
-        transform: translateY(-20%) rotate(10deg)
+        transform: translateY(-20%) rotate(8deg)
     }
 }
 
