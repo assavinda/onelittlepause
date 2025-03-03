@@ -6,7 +6,7 @@
     <SceneZones v-if="currentScene === 'Zones'" @nextpage="setScene" />
 
     <!-- Bath Games Section -->
-    <SceneBath01test v-if="currentScene === 'Bath01'" @nextpage="setScene('Bath02')"></SceneBath01test>
+    <SceneBath01 v-if="currentScene === 'Bath01'" @nextpage="setScene('Bath02')"></SceneBath01>
 
     <SceneBath02 v-if="currentScene === 'Bath02'" @nextpage="setScene('')"></SceneBath02>
 
@@ -46,6 +46,11 @@ function setScene(sceneName) {
 </script>
 
 <style>
+
+* {
+    will-change: auto !important;
+}
+
 body {
   overflow: hidden;
   font-family: "Kanit", serif;

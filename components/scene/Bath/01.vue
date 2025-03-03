@@ -318,12 +318,12 @@ function restart() {
     0% {
         transform: scale(1);
         opacity: 0.95;
-        content: url(/images/bath-game-01c2/bubble-eye2.webp);
+        content: url(./images/bath-01/bubble-eye2.webp);
     }
     100% {
         transform: scale(1.1);
         opacity: 1;
-        content: url(/images/bath-game-01c2/bubble-eye1.webp);
+        content: url(./images/bath-01/bubble-eye1.webp);
     }
 }
 
