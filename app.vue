@@ -8,7 +8,7 @@
     <!-- Bath Games Section -->
     <SceneBath01test v-if="currentScene === 'Bath01'" @nextpage="setScene('Bath02')"></SceneBath01test>
 
-    <SceneBath02 v-if="currentScene === 'Bath02'" @nextpage="setScene('')"></SceneBath02>
+    <SceneBath02test v-if="currentScene === 'Bath02'" @nextpage="setScene('')"></SceneBath02test>
 
 
     <!-- Coffee Games Section -->
@@ -55,7 +55,7 @@ provide("preloaded", images);
 //--SCENES MANAGEMENT--
 
 //current scene (state)
-const currentScene = ref('Bath01');
+const currentScene = ref('Bath02');
 
 //set scene function
 function setScene(sceneName) {

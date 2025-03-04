@@ -2,7 +2,7 @@
     <GeneralContainer ref="container">
         <!-- background images -->
         <div class="absolute top-0 left-0">
-            <img :src="images['bath-02-BG-2.png']">
+            <img :src="images['bath-02-bg-all.png']">
         </div>
 
         <!-- bubbles & girl -->
