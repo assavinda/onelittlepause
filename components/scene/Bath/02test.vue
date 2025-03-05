@@ -1,5 +1,5 @@
 <template>
-    <GeneralContainer>
+    <GeneralContainer ref="container">
         <!-- background images -->
         <div class="absolute top-0 left-0">
             <img :src="images['bath-02-bg-all.png']">
@@ -37,6 +37,11 @@
                 <img :src="images['bath-02-girlnoface.png']">
             </div>
 
+            <!-- mood -->
+            <div class="absolute top-[17%] left-[35.2%] z-[11] w-[30%] girl">
+                <img :src="images['bath-02-face-smile.png']">
+            </div>
+
             <div class="absolute bottom-[3%] left-[32%] w-[35%] z-[13] girl">
                 <img :src="images['bath-02-hand.png']">
             </div>
@@ -47,11 +52,81 @@
             <img :src="images['bath-02-shelf.png']">
         </div>
 
+        <!-- heartbreak -->
+        <div class="absolute top-[17.5%] right-[1.85%] w-[5%] h-[24.5%] z-[10] flex flex-col items-center space-y-[40%] border-2">
+            <div v-for="heartbreak in 3" class="w-[70%]">
+                <img :src="images['bath-02-star-yellow.png']">
+            </div>
+        </div>
+
+        <!-- shower -->
+        <div @touchstart="startDrag" class="absolute w-[50%] z-[14]" :style="{ top: `${showerpos.top}%`, left: `${showerpos.left}%`}">
+            <img :src="images['bath-02-fakbua.png']">
+        </div>
+
+
+
     </GeneralContainer>
 </template>
 
 <script setup>
 const images = inject('preloaded')
+const currentMood = ref('smile')
+
+//drag system
+const container = ref(null);
+let containerBounds = null;
+
+function getBound() {
+    const containerElement = container.value?.$el || container.value;
+    container.value = containerElement.getBoundingClientRect();
+    containerBounds = containerElement.getBoundingClientRect();
+}
+
+const showerpos = ref({ top: 65, left: 80.2 })
+const isDragable = ref(true)
+
+function startDrag(e) {
+    if (!isDragable.value) return;
+    
+    containerBounds == null ? getBound() : console.log('gotten');
+
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+    const pcX = (clientX - container.value.left) / container.value.width * 100;
+    const pcY = (clientY - container.value.top) / container.value.height * 100;
+
+    showerpos.value.left = pcX - 5
+    showerpos.value.top = pcY - 5
+
+    document.addEventListener('touchmove', onDrag);
+    document.addEventListener('touchend', stopDrag);
+}
+
+function onDrag(e) {
+    if (!isDragable.value) {
+        stopDrag()
+        return
+    }
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+    const pcX = (clientX - container.value.left) / container.value.width * 100;
+    const pcY = (clientY - container.value.top) / container.value.height * 100;
+
+    showerpos.value.left = pcX - 5
+    showerpos.value.top = pcY - 5
+}
+
+function stopDrag() {
+    showerpos.value.left = 80.2
+    showerpos.value.top = 65
+
+    document.removeEventListener('touchmove', onDrag);
+    document.removeEventListener('touchend', stopDrag);
+}
+
 </script>
 
 <style scoped>
