@@ -79,6 +79,12 @@
             />
         </div>
 
+        <div class="border-2 w-[10%] h-[20%] bg-amber-400 absolute bottom-0 left-0">
+            <button>
+                eafe
+            </button>
+        </div>
+
 
     </GeneralContainer>
 </template>
