@@ -64,6 +64,20 @@
             <img :src="images['bath-02-fakbua.png']">
         </div>
 
+        <!-- temp -->
+        <div class="absolute bottom-[6%] left-[22.5%] w-[56.7%] h-[7.5%] z-[20]">
+            <input
+                @touchstart="stopSponge"
+                @touchend="startSponge"
+                type="range"
+                :min="sliderMin"
+                :max="sliderMax"
+                :step="sliderStep"
+                v-model="slide"
+                class="slider"
+                :style="sliderStyle"
+            />
+        </div>
 
 
     </GeneralContainer>
@@ -127,6 +141,20 @@ function stopDrag() {
     document.removeEventListener('touchend', stopDrag);
 }
 
+//slider
+const slide = ref(0);
+
+const sliderMin = ref(0);
+const sliderMax = ref(100);
+const sliderStep = ref(1);
+
+const sliderStyle = computed(() => {
+    const percentage = ((slide.value - sliderMin.value) / (sliderMax.value - sliderMin.value)) * 100;
+    return {
+        background: `linear-gradient(to right, #fbcedb ${percentage}%, #eb5d50 ${percentage}%)`,
+    };
+});
+
 </script>
 
 <style scoped>
@@ -161,6 +189,42 @@ function stopDrag() {
 .girl {
     animation: girl alternate infinite 0.5s ease-in-out;
     transform-origin: bottom;
+}
+
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    transition: background 0.3s ease;
+    border: 1px solid black;
+    box-shadow: 0 0 0 5% black;
+
+    @apply rounded-full
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 17%;
+    height: auto;
+    background-image: url(/images/bath-02/sponge.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    aspect-ratio: 80 / 50;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.slider::-moz-range-thumb {
+    width: 17%;
+    height: auto;
+    background-image: url(/images/bath-02/letter-sponge.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    aspect-ratio: 80 / 60;
+    cursor: pointer;
 }
 
 </style>
