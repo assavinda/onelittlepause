@@ -23,29 +23,43 @@
 </template>
 
 <script setup>
-
 onMounted(() => {
   // Prevent pinch-to-zoom
-  const preventPinch = (event) => event.preventDefault();
+  const preventPinch = (event) => {
+    if (event.scale !== 1) {
+      event.preventDefault();
+    }
+  };
   document.addEventListener("gesturestart", preventPinch, { passive: false });
+  document.addEventListener("gesturechange", preventPinch, { passive: false });
 
   // Prevent double-tap zoom
-  let lastTouchEnd = 0;
+  let lastTouchTime = 0;
   const preventDoubleTap = (event) => {
-      const now = Date.now();
-      if (now - lastTouchEnd <= 300) {
-          event.preventDefault();
-      }
-      lastTouchEnd = now;
+    const now = Date.now();
+    if (now - lastTouchTime <= 300) {
+      event.preventDefault(); // Prevent zoom
+    }
+    lastTouchTime = now;
   };
-  document.addEventListener("touchend", preventDoubleTap, { passive: false });
-})
+
+  document.addEventListener("touchstart", preventDoubleTap, { passive: false });
+});
+
 
 // use head
 useHead({
   meta: [
     { name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" }
-  ]
+  ],
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "./images/general/logo.png",
+    },
+  ],
+  title: "One Little Pause",
 });
 
 //use image preloader
@@ -55,7 +69,7 @@ provide("preloaded", images);
 //--SCENES MANAGEMENT--
 
 //current scene (state)
-const currentScene = ref('Bath02');
+const currentScene = ref('Bath01');
 
 //set scene function
 function setScene(sceneName) {

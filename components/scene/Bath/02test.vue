@@ -2,7 +2,7 @@
     <GeneralContainer ref="container">
         <!-- background images -->
         <div class="absolute top-0 left-0">
-            <img :src="images['bath-02-bg-all.png']">
+            <img :src="images['bath-02-BG-2.png']">
         </div>
 
         <!-- Score Bar -->
@@ -12,7 +12,7 @@
             </div>
 
             <div class="absolute top-[10%] left-[14.5%] w-[14.6%] h-[5%] bg-pink-200 z-[5]">
-                <div class="h-full bg-pink-400" :style="{width: 100 + '%'}"></div>
+                <div class="h-full bg-pink-400" :style="{width: cleanValue + '%'}"></div>
             </div>
         </div>
 
@@ -38,8 +38,12 @@
             </div>
 
             <!-- mood -->
-            <div class="absolute top-[17%] left-[35.2%] z-[11] w-[30%] girl">
+            <div class="absolute top-[17%] left-[35.2%] z-[11] w-[30%] girl" :class="currentMood == 'smile' ? 'opacity-100' : 'opacity-0'">
                 <img :src="images['bath-02-face-smile.png']">
+            </div>
+
+            <div class="absolute top-[5.3%] left-[31.7%] z-[11] w-[40%] girl" :class="currentMood != 'smile' ? 'opacity-100' : 'opacity-0'">
+                <img :src="images['bath-02-face-sad.png']">
             </div>
 
             <div class="absolute bottom-[3%] left-[32%] w-[35%] z-[13] girl">
@@ -47,51 +51,111 @@
             </div>
         </div>
 
+        <!-- bubbles -->
+        <div class="absolute top-[10%] left-[45%] w-[15%] z-[11] bubble">
+            <img :src="images['bath-02-bubble-head.png']">
+        </div>
+
+        <div class="absolute top-[35%] left-[32%] w-[35%] z-[11] bubble-r">
+            <img :src="images['bath-02-bubble2.png']">
+        </div>
+
+        <div class="absolute top-[29%] left-[35%] w-[32%] z-[12] bubble">
+            <img :src="images['bath-02-bubble1.png']">
+        </div>
+
         <!-- shelf -->
         <div class="absolute top-[33%] left-[3%] w-[40%] z-[13]">
             <img :src="images['bath-02-shelf.png']">
         </div>
 
-        <!-- heartbreak -->
-        <div class="absolute top-[17.5%] right-[1.85%] w-[5%] h-[24.5%] z-[10] flex flex-col items-center space-y-[40%] border-2">
-            <div v-for="heartbreak in 3" class="w-[70%]">
-                <img :src="images['bath-02-star-yellow.png']">
-            </div>
-        </div>
-
         <!-- shower -->
-        <div @touchstart="startDrag" class="absolute w-[50%] z-[14]" :style="{ top: `${showerpos.top}%`, left: `${showerpos.left}%`}">
+        <div @touchstart="startDrag" class="absolute w-[50%] z-[20]" :style="{ top: `${showerpos.top}%`, left: `${showerpos.left}%`}">
             <img :src="images['bath-02-fakbua.png']">
         </div>
 
+        <div class="absolute w-[12%] z-[19]" :class="isCleaning ? 'opacity-75' : 'opacity-0'" :style="{ top: `${showerpos.top + 10}%`, left: `${showerpos.left - 2}%`}">
+            <img :src="images['bath-02-namm.png']">
+        </div>
+
         <!-- temp -->
-        <div class="absolute bottom-[6%] left-[22.5%] w-[56.7%] h-[7.5%] z-[20]">
+        <div class="absolute bottom-[-42%] left-[0.05%] w-[100%] z-[16]">
+            <img :src="images['bath-02-temperature.png']">
+        </div>
+
+        <div class="absolute bottom-[6.15%] left-[23.3%] w-[55%] z-[16]">
+            <img :src="images['bath-02-tempbar.png']">
+        </div>
+
+        <div class="absolute bottom-[5.85%] left-[22.6%] w-[56.31%] h-[7.35%] z-[20]">
             <input
-                @touchstart="stopSponge"
-                @touchend="startSponge"
+            @touchstart="isSliderDragging = true"
+            @touchend="onSliderRelease($event)"
                 type="range"
                 :min="sliderMin"
                 :max="sliderMax"
                 :step="sliderStep"
                 v-model="slide"
                 class="slider"
-                :style="sliderStyle"
             />
         </div>
 
-        <div class="border-2 w-[10%] h-[20%] bg-amber-400 absolute bottom-0 left-0">
-            <button>
-                eafe
-            </button>
+        <div class="absolute flex w-[100%] h-[100%] top-0 left-0 z-[200] justify-center pointer-events-none backdrop-blur-xs transition-all duration-300" :class="isSuccess ? 'opacity-100' : 'opacity-0'">
+            <div class="w-full h-full opacity-25"></div>
+            <div class="absolute top-0 left-0">
+                <img @transitionend="console.log('lets go')" :src="images['coffee-01-perfect.png']" class="transition-all duration-700" :class="isSuccess ? 'scale-[1]' : 'scale-[3]'">
+            </div>
         </div>
 
+        <!-- Next Button -->
+        <div @touchstart="isGoingToNext = true" class="absolute top-[72%] left-[80%] w-[20%]" :class="isSuccess ? 'opacity-100 z-[201] next' : 'opacity-75 z-[199] pointer-events-none'">
+            <img :src="images['coffee-01-butt.png']">
+        </div>
+
+        <!-- fg fade in -->
+        <GeneralLoading :progress="progressPercent" :class="isLoaded ? 'fade-out' : '' "></GeneralLoading>
+
+        <!-- fg fade out -->
+        <div @animationend="$emit('nextpage')" class="absolute top-0 left-0 w-full h-full bg-white pointer-events-none z-[210]" :class="isGoingToNext ? 'fade-in' : 'opacity-0' "></div>
 
     </GeneralContainer>
 </template>
 
 <script setup>
 const images = inject('preloaded')
+
+// check if all img has loaded
+const isLoaded = ref(false);
+const progressPercent = ref(0)
+
+onMounted(() => {
+    checkImagesLoaded((progress) => {
+        if (isLoaded.value == true) return 
+
+        if (progress == 100) {
+            setTimeout(() => {
+                isLoaded.value = true;
+            },1200)
+            console.log("all images loaded");
+        }
+        else {
+            console.log(progressPercent.value)
+        }
+        progressPercent.value = progress
+    });
+});
+
 const currentMood = ref('smile')
+const cleanValue = ref(0)
+const isSuccess = ref(false)
+const isGoingToNext = ref(false)
+const isCleaning = ref(false)
+
+watch(cleanValue, (newValue) => {
+    if (newValue >= 99) {
+        isSuccess.value = true
+    }
+});
 
 //drag system
 const container = ref(null);
@@ -104,13 +168,34 @@ function getBound() {
 }
 
 const showerpos = ref({ top: 65, left: 80.2 })
+const isCoolingDown = ref(false)
+
+watch(isCoolingDown, (newValue) => {
+    if (newValue) {
+        setTimeout(() => {
+            isCoolingDown.value = false
+        },1000)
+    }
+});
+
 const isDragable = ref(true)
+
+const isSliderDragging = ref(false)
+
+watch(isSliderDragging, (newValue) => {
+    if (newValue) {
+        isDragable.value = false
+    }
+    else {
+        isDragable.value = true
+    }
+});
 
 function startDrag(e) {
     if (!isDragable.value) return;
     
     containerBounds == null ? getBound() : console.log('gotten');
-
+    
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
@@ -137,11 +222,54 @@ function onDrag(e) {
 
     showerpos.value.left = pcX - 5
     showerpos.value.top = pcY - 5
+
+    if (showerpos.value.left > 34 && showerpos.value.left < 56) {
+        if (canShower.value) {
+            if (isCoolingDown.value) {
+                console.log('cooldown')
+            }
+            else {
+                cleanValue.value += 33.33
+                isCoolingDown.value = true
+                currentMood.value = 'smile'
+                isCleaning.value = true
+            }
+        }
+        else {
+            if (isCoolingDown.value) {
+                console.log('cooldown')
+            }
+            else {
+                if (cleanValue.value > 0) {
+                    cleanValue.value -= 33.33
+                    isCoolingDown.value = true
+                    currentMood.value = 'sad'
+                    isCleaning.value = true
+                    setTimeout(() => {
+                        currentMood.value = 'smile'
+                    },700)
+                }
+                if (cleanValue.value <= 0) {
+                    cleanValue.value = 0
+                    isCoolingDown.value = true
+                    currentMood.value = 'sad'
+                    isCleaning.value = true
+                    setTimeout(() => {
+                        currentMood.value = 'smile'
+                    },700)
+                }
+            }
+        }
+    }
+    else {
+        isCleaning.value = false
+    }
 }
 
 function stopDrag() {
     showerpos.value.left = 80.2
     showerpos.value.top = 65
+    isCleaning.value = false
 
     document.removeEventListener('touchmove', onDrag);
     document.removeEventListener('touchend', stopDrag);
@@ -154,12 +282,33 @@ const sliderMin = ref(0);
 const sliderMax = ref(100);
 const sliderStep = ref(1);
 
-const sliderStyle = computed(() => {
-    const percentage = ((slide.value - sliderMin.value) / (sliderMax.value - sliderMin.value)) * 100;
-    return {
-        background: `linear-gradient(to right, #fbcedb ${percentage}%, #eb5d50 ${percentage}%)`,
-    };
+const canShower = ref(false)
+
+let interval
+onMounted(() => {
+    interval = setInterval(() => {
+        if (!isSliderDragging.value) {
+            slide.value = Math.min(slide.value + 1, sliderMax.value);
+        }
+    }, 50);
+})
+
+watch(slide, (newValue) => {
+    if (newValue >= 46 && newValue <= 62) {
+        canShower.value = true
+    }
+    else {
+        canShower.value = false
+    }
 });
+
+ 
+function onSliderRelease(e) {
+    if (!e || !e.target) return;
+
+    slide.value = Number(e.target.value);
+    isSliderDragging.value = false;
+}
 
 </script>
 
@@ -203,9 +352,7 @@ const sliderStyle = computed(() => {
     width: 100%;
     height: 100%;
     outline: none;
-    transition: background 0.3s ease;
-    border: 1px solid black;
-    box-shadow: 0 0 0 5% black;
+    transition: background 0.3s ease, transform 0.2s ease;
 
     @apply rounded-full
 }
@@ -213,24 +360,34 @@ const sliderStyle = computed(() => {
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 17%;
+    width: 8.5%;
     height: auto;
+    background: none; /* Remove background */
     background-image: url(/images/bath-02/sponge.png);
     background-size: contain;
     background-repeat: no-repeat;
-    aspect-ratio: 80 / 50;
+    border: none; /* Remove any default borders */
+    box-shadow: none; /* Ensure no shadow */
+    aspect-ratio: 45 / 50;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: transform 0.2s ease;
 }
 
 .slider::-moz-range-thumb {
-    width: 17%;
+    width: 8.5%;
     height: auto;
+    background: none;
     background-image: url(/images/bath-02/letter-sponge.png);
     background-size: contain;
     background-repeat: no-repeat;
-    aspect-ratio: 80 / 60;
+    border: none;
+    box-shadow: none;
+    aspect-ratio: 45 / 50;
     cursor: pointer;
+}
+
+.slider:active::-webkit-slider-thumb {
+    transform: scale(1.1);
 }
 
 </style>

@@ -75,14 +75,14 @@
         <div class="absolute flex w-[100%] h-[100%] top-0 left-0 z-[200] justify-center pointer-events-none backdrop-blur-xs transition-all duration-300" :class="isFailed ? 'opacity-100' : 'opacity-0'">
             <div class="w-full h-full opacity-25"></div>
             <div class="absolute top-0 left-0">
-                <img @transitionend="isFailed ? restart() : console.log('not here')" :src="images['coffee-01-failed.png']" class="transition-all duration-700" :class="isFailed ? 'scale-[1] opacity-100' : 'scale-[3] opacity-0'">
+                <img @transitionend="isFailed ? restart() : console.log('not here')" :src="images['coffee-01-failed.png']" class="transition-all duration-700" :class="isFailed ? 'scale-[1]' : 'scale-[3]'">
             </div>
         </div>
 
         <div class="absolute flex w-[100%] h-[100%] top-0 left-0 z-[200] justify-center pointer-events-none backdrop-blur-xs transition-all duration-300" :class="isSuccess ? 'opacity-100' : 'opacity-0'">
             <div class="w-full h-full opacity-25"></div>
             <div class="absolute top-0 left-0">
-                <img @transitionend="console.log('lets go')" :src="images['coffee-01-perfect.png']" class="transition-all duration-700" :class="isSuccess ? 'scale-[1] opacity-100' : 'scale-[3] opacity-0'">
+                <img @transitionend="console.log('lets go')" :src="images['coffee-01-perfect.png']" class="transition-all duration-700" :class="isSuccess ? 'scale-[1]' : 'scale-[3]'">
             </div>
         </div>
 

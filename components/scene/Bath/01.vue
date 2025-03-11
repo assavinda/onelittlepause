@@ -227,7 +227,6 @@ function onDrag(e) {
     if (targetElement.id == 'leftarm') {
         mainArm = pos1.value
         anotherArm = pos2.value
-
     }
     else {
         mainArm = pos2.value
@@ -318,12 +317,10 @@ function restart() {
     0% {
         transform: scale(1);
         opacity: 0.95;
-        content: url(/images/bath-01/bubble-eye2.webp);
     }
     100% {
         transform: scale(1.1);
         opacity: 1;
-        content: url(/images/bath-01/bubble-eye1.webp);
     }
 }
 
