@@ -2,19 +2,19 @@
     <GeneralContainer>
         <!-- background images -->
 
-        <div class="absolute top-0 left-0">
+        <div class="absolute top-0 left-0 w-full">
             <img :src="images['zones-zones-bg.png']">
         </div>
 
-        <div class="absolute top-[0%] left-[39%] w-[72%]">
+        <div class="absolute bottom-[0%] left-[58%] w-[34%]">
             <img :src="images['zones-girl.png']">
         </div>
 
-        <div class="absolute top-[15%] left-[40.7%] w-[72%] fan">
+        <div class="absolute top-[60%] left-[64.2%] w-[20%] fan">
             <img :src="images['zones-fan.png']">
         </div>
 
-        <div class="absolute top-[30%] left-[39.3%] w-[72.2%]">
+        <div class="absolute top-[80%] left-[58%] w-[34%]">
             <img :src="images['zones-girl-arm.png']">
         </div>
         

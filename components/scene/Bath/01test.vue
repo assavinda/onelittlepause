@@ -1,9 +1,11 @@
 <template>
     <GeneralContainer ref="container">
         <!-- background images -->
-        <div class="absolute top-0 left-0">
+        <div class="absolute top-0 left-0 w-full">
             <img :src="images['bath-01-bg-bath-game01.webp']">
         </div>
+
+        <GeneralMenubar/>
 
         <div class="absolute top-[-5%] left-[0%] w-full h-full">
             <div class="absolute top-[5%] left-[10%] w-[20%] z-[10]">

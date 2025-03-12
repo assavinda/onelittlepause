@@ -1,20 +1,65 @@
 <template>
     <GeneralContainer>
         <!-- background images -->
-
         <div class="absolute top-0 left-0">
-            <img :src="images['coffee-03-bg-coffee03.jpg']">
+            <img :src="images['coffee-03-bg-coffee03.png']">
         </div>
 
-        <!-- Letter -->
-        <div class="absolute top-[16%] left-[31.5%] w-[35%] h-[70%]">
-            <img :src="images['coffee-03-letter-stack.png']" class="absolute top-[28%] left-[3%]">
-            <img :src="images['coffee-03-letter-back.png']" class="absolute top-[-0.65%] left-[0%]">
-            <div class="absolute top-[-40%] left-0 w-[100%] h-[100%] mask-letter">
-                <div id="LetterImage" class="absolute top-[8%] left-[17%] w-[70%]" :style="{ transform: `translateY(${-slide}%)` }">
-                    <img :src="images['coffee-03-paper-inletter.png']">
+        <GeneralMenubar/>
 
-                    <div class="absolute top-[25%] left-[14%] w-[65%]">
+        <!-- dukdik -->
+        <div class="absolute top-[15%] left-[10%] w-[10%] dukdik">
+            <img :src="images['coffee-03-bow.png']">
+        </div>
+
+        <div class="absolute bottom-[12%] right-[20%] w-[6%] dukdik">
+            <img :src="images['coffee-03-f2.png']">
+        </div>
+
+        <div class="absolute bottom-[45%] left-[7%] w-[6.5%] dukdik">
+            <img :src="images['coffee-03-f1.png']">
+        </div>
+
+        <div class="absolute top-[20%] left-[15%] w-[45%] h-[50%]">
+            <div class="relative w-full h-full">
+                <div class="absolute top-0 left-0 w-full">
+                    <img :src="images['coffee-03-camera.png']">
+                </div>
+                <div class="absolute top-[38%] left-[16%] w-[45%] rotate-[-2deg] blur-[2px] transition-all duration-900" :class="slide < -60 ? 'opacity-100' : 'opacity-10 blur-sm'">
+                        <div>
+                            <img :src="images['coffee-02-glasstodraw.png']">
+                        </div>
+
+                        <div class="absolute left-[34.2%] top-[-9%] w-[30%] pointer-events-none">
+                            <img :src="images[`coffee-02-${currentFace}-eyes.png`]">
+                        </div>
+
+                        <div class="absolute left-[32.2%] top-[56%] w-[35%] pointer-events-none">
+                            <img :src="images[`coffee-02-${currentFace}-mouth.png`]">
+                        </div>
+
+                        <canvas
+                            ref="outputCanvas3"
+                            class="absolute left-[18%] top-[5%] rounded-[100%]"
+                            :style="{ width: canvasWidth + '%', height: canvasHeight + '%' }"
+                        ></canvas>
+                    </div>
+            </div>
+            
+        </div>
+        
+
+        <!-- Letter -->
+        <div class="absolute top-[28%] left-[58.7%] w-[30%] h-[50%] rotate-[-2deg]">
+            <div class="absolute top-[0%] left-0 w-[100%] h-[100%] mask-letter">
+                <div class="absolute top-[8%] left-[0%] w-[70%]" :style="{ transform: `translateX(${slide}%)` }">
+                    <img :src="images['coffee-03-polaroid.png']">
+
+                    <div class="absolute top-[-5%] right-[-5%] w-[40%] dukdik">
+                        <img :src="images['coffee-03-bowpink.png']">
+                    </div>
+
+                    <div class="absolute top-[16%] left-[12%] w-[75%] transition-all duration-1200" :class="slide >= -40 ? 'opacity-100' : 'opacity-10 blur-sm'">
                         <div>
                             <img :src="images['coffee-02-glasstodraw.png']">
                         </div>
@@ -35,12 +80,10 @@
                     </div>
                 </div>
             </div>
-            <img :src="images['coffee-03-letter-front.png']" class="absolute top-[26%] left-[0%]">
-            <img :src="images['coffee-03-stamp.png']" class="absolute top-[30%] left-[16%] w-[60%]">
         </div>
 
         <!-- Slider -->
-        <div class="absolute bottom-[14%] left-[29%] w-[100%] h-[5%]">
+        <div class="absolute bottom-[14%] left-[31.5%] w-[90%] h-[5%]">
             <input
                 type="range"
                 :min="sliderMin"
@@ -60,10 +103,10 @@
         <!-- Paper Popup -->
         <div ref="paperPopup" class="absolute top-0 left-0 w-[100%] h-[100%] backdrop-blur-xs z-[100] transition-all duration-500" :class="isPopUpShow ? 'opacity-100' : 'opacity-0 pointer-events-none' ">
             <div class="relative w-[100%] flex justify-center pt-[7%]">
-                <div class="relative w-[40%]">
-                    <img :src="images['coffee-03-paper.png']">
+                <div id="LetterImage" class="relative w-[40%] transition-all duration-700 origin-right" :class="isPopUpShow ? 'scale-[1]' : 'scale-[0]'">
+                    <img :src="images['coffee-03-polaroid.png']">
 
-                    <div class="absolute top-[30%] left-[17%] w-[65%]">
+                    <div class="absolute top-[16%] left-[12%] w-[75%]">
                         <div>
                             <img :src="images['coffee-02-glasstodraw.png']">
                         </div>
@@ -96,7 +139,7 @@
 import html2canvas from 'html2canvas';
 
 const images = inject("preloaded");
-
+let coffeeImage = localStorage.getItem('savedDrawing')
 // check if all img has loaded
 const isLoaded = ref(false);
 const progressPercent = ref(0)
@@ -126,6 +169,7 @@ const canvasWidth = ref(62);
 const canvasHeight = ref(58);
 const outputCanvas1 = ref(null);
 const outputCanvas2 = ref(null);
+const outputCanvas3 = ref(null);
 
 //faces
 const currentFace = ref('blank');
@@ -138,6 +182,7 @@ onMounted(() => {
 function showDrawing() {
     const outputContext1 = outputCanvas1.value.getContext('2d');
     const outputContext2 = outputCanvas2.value.getContext('2d');
+    const outputContext3 = outputCanvas3.value.getContext('2d');
 
     const img = new Image();
     img.src = localStorage.getItem('savedDrawing');
@@ -148,17 +193,20 @@ function showDrawing() {
         const scaledHeight1 = outputCanvas1.value.height * scaleFactor;
         const scaledWidth2 = outputCanvas2.value.width * scaleFactor;
         const scaledHeight2 = outputCanvas2.value.height * scaleFactor;
+        const scaledWidth3 = outputCanvas3.value.width * scaleFactor;
+        const scaledHeight3 = outputCanvas3.value.height * scaleFactor;
 
         outputContext1.drawImage(img, 0, 0, scaledWidth1, scaledHeight1);
         outputContext2.drawImage(img, 0, 0, scaledWidth2, scaledHeight2);
+        outputContext3.drawImage(img, 0, 0, scaledWidth3, scaledHeight3);
     };
 }
 
 //slider
-const sliderMin = ref(-100);
-const sliderMax = ref(-40);
+const sliderMin = ref(-110);
+const sliderMax = ref(10);
 const sliderStep = ref(1);
-const slide = ref(-100);
+const slide = ref(-110);
 
 // others
 const isPopUpShow = ref(false)
@@ -171,7 +219,7 @@ const sliderStyle = computed(() => {
 });
 
 watch(slide, (newValue) => {
-    if (newValue == (-40)) {
+    if (newValue == (10)) {
         setTimeout(() => {
             isPopUpShow.value = true
         }, 1200);
@@ -235,20 +283,40 @@ function saveAsPNG() {
     width: 15%;
     height: auto;
     background-image: url(/images/coffee-03/letter-thumb.png);
+    background-color: transparent;
     background-size: contain;
     background-repeat: no-repeat;
-    aspect-ratio: 80 / 50;
+    aspect-ratio: 50 / 50;
     cursor: pointer;
     transition: background 0.3s ease;
+    box-shadow: none;
 }
 
 .slider::-moz-range-thumb {
-    width: 10%;
+    width: 15%;
     height: auto;
     background-image: url(/images/coffee-03/letter-thumb.png);
+    background-color: transparent;
     background-size: contain;
     background-repeat: no-repeat;
-    aspect-ratio: 80 / 60;
+    aspect-ratio: 50 / 50;
     cursor: pointer;
+    box-shadow: none;
 }
+
+@keyframes dukdik {
+    0% {
+        transform: scale(1);
+        rotate: 0deg;
+    }
+    100% {
+        transform: scale(1.05);
+        rotate: 20deg;
+    }
+}
+
+.dukdik {
+    animation: dukdik 0.5s alternate infinite ease-in-out;
+}
+
 </style>

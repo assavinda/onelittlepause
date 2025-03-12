@@ -1,14 +1,20 @@
 <template>
     <GeneralContainer ref="container">
         <!-- background images -->
-        <div class="absolute top-0 left-0">
+        <div class="absolute top-0 left-0 w-full">
             <img :src="images['bath-02-BG-2.png']">
         </div>
+
+        <GeneralMenubar/>
 
         <!-- Score Bar -->
         <div class="absolute top-[-5%] left-[60%] w-full h-full">
             <div class="absolute top-[5%] left-[10%] w-[20%] z-[10]">
                 <img :src="images['bath-01-scorebar.png']">
+            </div>
+
+            <div class="absolute top-[8.1%] left-[10%] w-[5%] z-[10]" :class="currentMood != 'smile' ? 'opacity-100' : 'opacity-0' ">
+                <img :src="images['bath-02-heartbroken.png']">
             </div>
 
             <div class="absolute top-[10%] left-[14.5%] w-[14.6%] h-[5%] bg-pink-200 z-[5]">
@@ -33,16 +39,16 @@
 
         <!-- girl -->
         <div class="absolute top-[0%] left-[0%] w-full h-full">
-            <div class="absolute top-0 left-[10%] z-[11] girl">
+            <div class="absolute top-[14%] left-[36.5%] z-[11] girl w-[28%]">
                 <img :src="images['bath-02-girlnoface.png']">
             </div>
 
             <!-- mood -->
-            <div class="absolute top-[17%] left-[35.2%] z-[11] w-[30%] girl" :class="currentMood == 'smile' ? 'opacity-100' : 'opacity-0'">
+            <div class="absolute top-[27%] left-[45.5%] z-[11] w-[10%] girl" :class="currentMood == 'smile' ? 'opacity-100' : 'opacity-0'">
                 <img :src="images['bath-02-face-smile.png']">
             </div>
 
-            <div class="absolute top-[5.3%] left-[31.7%] z-[11] w-[40%] girl" :class="currentMood != 'smile' ? 'opacity-100' : 'opacity-0'">
+            <div class="absolute top-[25.6%] left-[45.2%] z-[11] w-[11%] girl" :class="currentMood != 'smile' ? 'opacity-100' : 'opacity-0'">
                 <img :src="images['bath-02-face-sad.png']">
             </div>
 
@@ -79,7 +85,7 @@
         </div>
 
         <!-- temp -->
-        <div class="absolute bottom-[-42%] left-[0.05%] w-[100%] z-[16]">
+        <div class="absolute bottom-[-0.25%] left-[0.05%] w-[100%] z-[16]">
             <img :src="images['bath-02-temperature.png']">
         </div>
 
@@ -108,8 +114,8 @@
         </div>
 
         <!-- Next Button -->
-        <div @touchstart="isGoingToNext = true" class="absolute top-[72%] left-[80%] w-[20%]" :class="isSuccess ? 'opacity-100 z-[201] next' : 'opacity-75 z-[199] pointer-events-none'">
-            <img :src="images['coffee-01-butt.png']">
+        <div @touchstart="isGoingToNext = true" class="absolute top-[78%] left-[87%] w-[12%]" :class="isSuccess ? 'opacity-100 z-[201] next' : 'opacity-75 z-[199] pointer-events-none'">
+            <img :src="images['bath-02-next.png']">
         </div>
 
         <!-- fg fade in -->

@@ -69,6 +69,17 @@
           ></canvas>
         </div>
 
+        <!-- Suggestion -->
+        <div class="absolute flex w-[100%] h-[100%] top-0 left-0 z-[200] justify-center backdrop-blur-xs transition-all duration-300" :class="isSuggestShow ? 'opacity-100' : 'opacity-0 pointer-events-none'">
+            <div class="w-full h-full opacity-25"></div>
+            <div class="absolute w-[65%] top-[3%]">
+                <img :src="images['coffee-02-popup-game02.png']">
+            </div>
+            <div class="absolute top-[70%] w-[8%] cursor-pointer" @touchstart="isSuggestShow = false">
+                <img :src="images['general-X-icon.png']">
+            </div>
+        </div>
+
         <!-- fg fade in -->
         <GeneralLoading :progress="progressPercent" :class="isLoaded ? 'fade-out' : '' "></GeneralLoading>
 
@@ -81,6 +92,7 @@
 <script setup>
 const images = inject("preloaded");
 const isGoingToNext = ref(false)
+const isSuggestShow = ref(true)
 
 // check if all img has loaded
 const isLoaded = ref(false);

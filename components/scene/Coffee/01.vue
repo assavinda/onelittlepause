@@ -1,10 +1,11 @@
 <template>
     <GeneralContainer ref="container">
         <!-- background images -->
-
         <div class="absolute top-0 left-0">
             <img :src="images['coffee-01-bg-coffee01.webp']">
         </div>
+
+        <GeneralMenubar/>
 
         <!-- ML frame -->
         <div class="absolute top-[7%] left-[37%] w-[26%]">
