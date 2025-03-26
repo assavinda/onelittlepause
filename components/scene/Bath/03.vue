@@ -28,15 +28,14 @@
 
         <!-- Next Button -->
         <div @touchstart="isGoingToNext = true" class="absolute top-[58%] left-[78%] w-[20%]" :class="isSuccess ? 'opacity-100 z-[201] next' : 'opacity-75 z-[199] pointer-events-none'">
-            <img :src="images['bath-01-next.webp']">
+            <NuxtImg src="./images/bath-01/next.webp" quality="80" format="webp"/>
         </div>
     </GeneralContainer>
 </template>
 
 <script setup>
-const images = inject('preloaded')
 const isGoingToNext = ref(false)
-const isSuccess = ref(false)
+// const isSuccess = ref(false)
 </script>
 
 <style scoped>
