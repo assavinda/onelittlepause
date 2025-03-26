@@ -2,14 +2,14 @@
     <GeneralContainer ref="container">
         <!-- background images -->
         <div class="absolute top-0 left-0 w-full">
-            <NuxtImg src="./images/bath-01/bg-bath-game01.webp" quality="80" format="webp"/>
+            <NuxtImg src="/images/bath-01/bg-bath-game01.webp" quality="80" format="webp"/>
         </div>
 
         <GeneralMenubar/>
 
         <div class="absolute top-[0%] left-[0%] w-full h-full">
             <div class="absolute top-[5%] left-[10%] w-[20%] z-[10]">
-                <NuxtImg src="./images/bath-01/scorebar.png" quality="80" format="webp"/>
+                <NuxtImg src="/images/bath-01/scorebar.png" quality="80" format="webp"/>
             </div>
 
             <div class="absolute top-[10%] left-[14.5%] w-[14.6%] h-[5%] bg-pink-200 z-[5]">
@@ -18,7 +18,7 @@
         </div>
         <!-- Time -->
         <div class="absolute top-[7%] right-[10%] w-[17%]">
-            <NuxtImg src="./images/bath-01/time.png" quality="80" format="webp"/>
+            <NuxtImg src="/images/bath-01/time.png" quality="80" format="webp"/>
         </div>
 
         <div class="absolute top-[14%] left-[77.3%] w-[30%]">
@@ -28,7 +28,7 @@
         <!-- Face -->
 
         <div class="absolute top-[-0.56%] left-0 w-[100%] face">
-            <NuxtImg src="./images/bath-01/face.webp" quality="80" format="webp"/>
+            <NuxtImg src="/images/bath-01/face.webp" quality="80" format="webp"/>
         </div>
 
         <div class="absolute top-[45%] left-[23%] w-[6%] bubbles">
