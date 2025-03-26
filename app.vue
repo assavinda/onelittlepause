@@ -72,7 +72,7 @@ provide("preloaded", images);
 //--SCENES MANAGEMENT--
 
 //current scene (state)
-const currentScene = ref('Bath03');
+const currentScene = ref('Bath01');
 
 //set scene function
 function setScene(sceneName) {
