@@ -16,5 +16,9 @@ export default defineNuxtConfig({
     baseURL: '/onelittlepause/',
   },
 
-  modules: ['@nuxt/image']
+  modules: ['@nuxt/image'],
+
+  image: {
+    dir: 'public/images',
+  },
 })
