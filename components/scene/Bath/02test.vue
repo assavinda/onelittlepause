@@ -2,7 +2,7 @@
     <GeneralContainer ref="container">
         <!-- background images -->
         <div class="absolute top-0 left-0 w-full">
-            <NuxtImg src="/images/bath-02/BG-2.png" quality="80" format="webp"/>
+            <img :src="images['bath-02-BG-2.png']" />
         </div>
 
         <GeneralMenubar/>
@@ -10,11 +10,11 @@
         <!-- Score Bar -->
         <div class="absolute top-[-5%] left-[60%] w-full h-full">
             <div class="absolute top-[5%] left-[10%] w-[20%] z-[10]">
-                <NuxtImg src="/images/bath-01/scorebar.png" quality="80" format="webp"/>
+                <img :src="images['bath-01-scorebar.png']">
             </div>
 
             <div class="absolute top-[8.1%] left-[10%] w-[5%] z-[10]" :class="currentMood != 'smile' ? 'opacity-100' : 'opacity-0' ">
-                <NuxtImg src="/images/bath-02/heartbroken.png" quality="80" format="webp"/>
+                <img :src="images['bath-02-heartbroken.png']">
             </div>
 
             <div class="absolute top-[10%] left-[14.5%] w-[14.6%] h-[5%] bg-pink-200 z-[5]">
@@ -25,72 +25,72 @@
         <!-- bubbles -->
         <div class="absolute top-[35%] left-[0%] w-full h-full">
             <div class="absolute top-[0%] left-[5%] bubble-r w-[90%] z-[10]">
-                <NuxtImg src="/images/bath-02/bubble-back.png" quality="80" format="webp"/>
+                <img :src="images['bath-02-bubble-back.png']">
             </div>
 
             <div class="absolute top-[6%] scale-x-[0.9] left-[5%] bubble w-[90%] z-[10]">
-                <NuxtImg src="/images/bath-02/bubble-front.png" quality="80" format="webp"/>
+                <img :src="images['bath-02-bubble-front.png']">
             </div>
 
             <div class="absolute top-[17%] left-[5%] bubble-r w-[90%] z-[12]">
-                <NuxtImg src="/images/bath-02/bubble-front.png" quality="80" format="webp"/>
+                <img :src="images['bath-02-bubble-front.png']">
             </div>
         </div>
 
         <!-- girl -->
         <div class="absolute top-[0%] left-[0%] w-full h-full">
             <div class="absolute top-[14%] left-[36.5%] z-[11] girl w-[28%]">
-                <NuxtImg src="/images/bath-02/girlnoface.png" quality="80" format="webp"/>
+                <img :src="images['bath-02-girlnoface.png']">
             </div>
 
             <!-- mood -->
             <div class="absolute top-[27%] left-[45.5%] z-[11] w-[10%] girl" :class="currentMood == 'smile' ? 'opacity-100' : 'opacity-0'">
-                <NuxtImg src="./images/bath-02/face-smile.png" quality="80" format="webp"/>
+                <img :src="images['bath-02-face-smile.png']">
             </div>
 
             <div class="absolute top-[25.6%] left-[45.2%] z-[11] w-[11%] girl" :class="currentMood != 'smile' ? 'opacity-100' : 'opacity-0'">
-                <NuxtImg src="./images/bath-02/face-sad.png" quality="80" format="webp"/>
+                <img :src="images['bath-02-face-sad.png']">
             </div>
 
             <div class="absolute bottom-[3%] left-[32%] w-[35%] z-[13] girl">
-                <NuxtImg src="./images/bath-02/hand.png" quality="80" format="webp"/>
+                <img :src="images['bath-02-hand.png']">
             </div>
         </div>
 
         <!-- bubbles -->
         <div class="absolute top-[10%] left-[45%] w-[15%] z-[11] bubble">
-            <NuxtImg src="./images/bath-02/bubble-head.png" quality="80" format="webp"/>
+            <img :src="images['bath-02-bubble-head.png']">
         </div>
 
         <div class="absolute top-[35%] left-[32%] w-[35%] z-[11] bubble-r">
-            <NuxtImg src="./images/bath-02/bubble2.png" quality="80" format="webp"/>
+            <img :src="images['bath-02-bubble2.png']">
         </div>
 
         <div class="absolute top-[29%] left-[35%] w-[32%] z-[12] bubble">
-            <NuxtImg src="./images/bath-02/bubble1.png" quality="80" format="webp"/>
+            <img :src="images['bath-02-bubble1.png']">
         </div>
 
         <!-- shelf -->
         <div class="absolute top-[33%] left-[3%] w-[40%] z-[13]">
-            <NuxtImg src="./images/bath-02/shelf.png" quality="80" format="webp"/>
+            <img :src="images['bath-02-shelf.png']">
         </div>
 
         <!-- shower -->
-        <div @touchstart="startDrag" class="absolute w-[50%] z-[20]" :style="{ top: `${showerpos.top}%`, left: `${showerpos.left}%`}">
+        <div @touchstart="startDrag" @mousedown="startDrag" class="absolute w-[50%] z-[20]" :style="{ top: `${showerpos.top}%`, left: `${showerpos.left}%`}">
             <img :src="images['bath-02-fakbua.png']">
         </div>
 
         <div class="absolute w-[12%] z-[19]" :class="isCleaning ? 'opacity-75' : 'opacity-0'" :style="{ top: `${showerpos.top + 10}%`, left: `${showerpos.left - 2}%`}">
-            <NuxtImg src="./images/bath-02/namm.png" quality="80" format="webp"/>
+            <img :src="images['bath-02-namm.png']">
         </div>
 
         <!-- temp -->
         <div class="absolute bottom-[-0.25%] left-[0.05%] w-[100%] z-[16]">
-            <NuxtImg src="./images/bath-02/temperature.png" quality="80" format="webp"/>
+            <img :src="images['bath-02-temperature.png']">
         </div>
 
         <div class="absolute bottom-[6.15%] left-[23.3%] w-[55%] z-[16]">
-            <NuxtImg src="./images/bath-02/tempbar.png" quality="80" format="webp"/>
+            <img :src="images['bath-02-tempbar.png']">
         </div>
 
         <div class="absolute bottom-[5.85%] left-[22.6%] w-[56.31%] h-[7.35%] z-[20]">
@@ -109,13 +109,13 @@
         <div class="absolute flex w-[100%] h-[100%] top-0 left-0 z-[200] justify-center pointer-events-none backdrop-blur-xs transition-all duration-300" :class="isSuccess ? 'opacity-100' : 'opacity-0'">
             <div class="w-full h-full opacity-25"></div>
             <div class="absolute top-0 left-0">
-                <NuxtImg @transitionend="console.log('lets go')" src="./images/coffee-01/perfect.png" class="transition-all duration-700" :class="isSuccess ? 'scale-[1]' : 'scale-[3]'"/>
+                <img @transitionend="console.log('lets go')" :src="images['coffee-01-perfect.png']" class="transition-all duration-700" :class="isSuccess ? 'scale-[1]' : 'scale-[3]'">
             </div>
         </div>
 
         <!-- Next Button -->
         <div @touchstart="isGoingToNext = true" class="absolute top-[78%] left-[87%] w-[12%]" :class="isSuccess ? 'opacity-100 z-[201] next' : 'opacity-75 z-[199] pointer-events-none'">
-            <NuxtImg src="./images/bath-02/next.png" quality="80" format="webp"/>
+            <img :src="images['bath-02-next.png']">
         </div>
 
         <!-- fg fade in -->
@@ -213,6 +213,8 @@ function startDrag(e) {
 
     document.addEventListener('touchmove', onDrag);
     document.addEventListener('touchend', stopDrag);
+    document.addEventListener('mousemove', onDrag);
+    document.addEventListener('mouseup', stopDrag);
 }
 
 function onDrag(e) {
@@ -279,6 +281,8 @@ function stopDrag() {
 
     document.removeEventListener('touchmove', onDrag);
     document.removeEventListener('touchend', stopDrag);
+    document.removeEventListener('mousemove', onDrag);
+    document.removeEventListener('mouseup', stopDrag);
 }
 
 //slider
