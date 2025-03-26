@@ -2,7 +2,7 @@
     <GeneralContainer ref="container">
         <!-- background images -->
         <div class="absolute top-0 left-0 w-full">
-            <NuxtImg src="./images/bath-02/BG-2.png" quality="80" format="webp"/>
+            <NuxtImg src="/images/bath-02/BG-2.png" quality="80" format="webp"/>
         </div>
 
         <GeneralMenubar/>
@@ -10,11 +10,11 @@
         <!-- Score Bar -->
         <div class="absolute top-[-5%] left-[60%] w-full h-full">
             <div class="absolute top-[5%] left-[10%] w-[20%] z-[10]">
-                <NuxtImg src="./images/bath-01/scorebar.png" quality="80" format="webp"/>
+                <NuxtImg src="/images/bath-01/scorebar.png" quality="80" format="webp"/>
             </div>
 
             <div class="absolute top-[8.1%] left-[10%] w-[5%] z-[10]" :class="currentMood != 'smile' ? 'opacity-100' : 'opacity-0' ">
-                <NuxtImg src="./images/bath-02/heartbroken.png" quality="80" format="webp"/>
+                <NuxtImg src="/images/bath-02/heartbroken.png" quality="80" format="webp"/>
             </div>
 
             <div class="absolute top-[10%] left-[14.5%] w-[14.6%] h-[5%] bg-pink-200 z-[5]">
@@ -25,22 +25,22 @@
         <!-- bubbles -->
         <div class="absolute top-[35%] left-[0%] w-full h-full">
             <div class="absolute top-[0%] left-[5%] bubble-r w-[90%] z-[10]">
-                <NuxtImg src="./images/bath-02/bubble-back.png" quality="80" format="webp"/>
+                <NuxtImg src="/images/bath-02/bubble-back.png" quality="80" format="webp"/>
             </div>
 
             <div class="absolute top-[6%] scale-x-[0.9] left-[5%] bubble w-[90%] z-[10]">
-                <NuxtImg src="./images/bath-02/bubble-front.png" quality="80" format="webp"/>
+                <NuxtImg src="/images/bath-02/bubble-front.png" quality="80" format="webp"/>
             </div>
 
             <div class="absolute top-[17%] left-[5%] bubble-r w-[90%] z-[12]">
-                <NuxtImg src="./images/bath-02/bubble-front.png" quality="80" format="webp"/>
+                <NuxtImg src="/images/bath-02/bubble-front.png" quality="80" format="webp"/>
             </div>
         </div>
 
         <!-- girl -->
         <div class="absolute top-[0%] left-[0%] w-full h-full">
             <div class="absolute top-[14%] left-[36.5%] z-[11] girl w-[28%]">
-                <NuxtImg src="./images/bath-02/girlnoface.png" quality="80" format="webp"/>
+                <NuxtImg src="/images/bath-02/girlnoface.png" quality="80" format="webp"/>
             </div>
 
             <!-- mood -->

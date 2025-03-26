@@ -32,23 +32,23 @@
         </div>
 
         <div class="absolute top-[45%] left-[23%] w-[6%] bubbles">
-            <NuxtImg src="./images/bath-01/bubble2.webp" quality="80" format="webp"/>
+            <NuxtImg src="/images/bath-01/bubble2.webp" quality="80" format="webp"/>
         </div>
 
         <div class="absolute top-[40%] left-[30%] w-[3.5%] bubbles">
-            <NuxtImg src="./images/bath-01/bubble2.webp" quality="80" format="webp"/>
+            <NuxtImg src="/images/bath-01/bubble2.webp" quality="80" format="webp"/>
         </div>
 
         <div class="absolute top-[10%] left-[28%] w-[5%] bubbles">
-            <NuxtImg src="./images/bath-01/bubble2.webp" quality="80" format="webp"/>
+            <NuxtImg src="/images/bath-01/bubble2.webp" quality="80" format="webp"/>
         </div>
 
         <div class="absolute top-[20%] left-[72%] w-[3.5%] bubbles">
-            <NuxtImg src="./images/bath-01/bubble2.webp" quality="80" format="webp"/>
+            <NuxtImg src="/images/bath-01/bubble2.webp" quality="80" format="webp"/>
         </div>
 
         <div class="absolute top-[30%] left-[68%] w-[2%] bubbles">
-            <NuxtImg src="./images/bath-01/bubble2.webp" quality="80" format="webp"/>
+            <NuxtImg src="/images/bath-01/bubble2.webp" quality="80" format="webp"/>
         </div>
 
         <!-- Mood -->
@@ -56,20 +56,20 @@
             <div class="flex flex-col space-y-[3%] justify-center">
                 <div class="w-full absolute left-0 flex justify-center" :class="currentMood == 'smile' ? 'top-[-3.5%]' : 'top-[0.8%]'">
                     <div class="w-[6%] absolute top-0 left-[39.5%]" :class="currentMood == 'smile' ? 'scale-y-[-1] scale-x-[-1] eyebrows-r': 'scale-x-[1] eyebrows' ">
-                        <NuxtImg src="./images/bath-01/eyebrow.webp" quality="80" format="webp"/>
+                        <NuxtImg src="/images/bath-01/eyebrow.webp" quality="80" format="webp"/>
                     </div>
                     <div class="w-[6%] absolute top-0 right-[39.5%]" :class="currentMood == 'smile' ? 'scale-y-[-1] scale-x-[1] eyebrows-r': 'scale-x-[-1] eyebrows' ">
-                        <NuxtImg src="./images/bath-01/eyebrow.webp" quality="80" format="webp"/>
+                        <NuxtImg src="/images/bath-01/eyebrow.webp" quality="80" format="webp"/>
                     </div>     
                 </div>
                 <div class="w-full flex justify-center" :class="currentMood == 'smile' ? 'rotate-[-2deg]' : ''">
                     <div class="w-[21%] eyes">
-                        <NuxtImg :src="`./images/bath-01/eye-${currentMood}.webp`" quality="80" format="webp"/>
+                        <NuxtImg :src="`/images/bath-01/eye-${currentMood}.webp`" quality="80" format="webp"/>
                     </div>
                 </div>
                 <div class="w-full flex justify-center">
                     <div class="w-[11%] mouth">
-                        <NuxtImg :src="`./images/bath-01/mouth-${currentMood}.webp`" quality="80" format="webp"/>
+                        <NuxtImg :src="`/images/bath-01/mouth-${currentMood}.webp`" quality="80" format="webp"/>
                     </div>
                 </div>
             </div>
@@ -79,57 +79,57 @@
         <div class="absolute top-0 left-0 w-full h-full" :style="{ opacity: acneScale }">
             <div class="relative w-full h-full">
                 <div class="absolute top-[60%] left-[40%] w-[3%]" :style="{ scale: acneScale }">
-                    <NuxtImg src="./images/bath-01/acne.webp" quality="80" format="webp"/>
+                    <NuxtImg src="/images/bath-01/acne.webp" quality="80" format="webp"/>
                 </div>
                 <div class="absolute top-[60%] left-[58%] w-[1.2%]" :style="{ scale: acneScale }">
-                    <NuxtImg src="./images/bath-01/acne.webp" quality="80" format="webp"/>
+                    <NuxtImg src="/images/bath-01/acne.webp" quality="80" format="webp"/>
                 </div>
                 <div class="absolute top-[30%] left-[51%] w-[2%]" :style="{ scale: acneScale }">
-                    <NuxtImg src="./images/bath-01/acne.webp" quality="80" format="webp"/>
+                    <NuxtImg src="/images/bath-01/acne.webp" quality="80" format="webp"/>
                 </div>
                 <div class="absolute top-[36%] left-[48%] w-[1.5%]" :style="{ scale: acneScale }">
-                    <NuxtImg src="./images/bath-01/acne.webp" quality="80" format="webp"/>
+                    <NuxtImg src="/images/bath-01/acne.webp" quality="80" format="webp"/>
                 </div>
                 <div class="absolute w-[18%]" :class="currentMood == 'smile' ? 'rotate-[2deg] top-[40%] left-[41.5%]' : 'top-[36%] left-[41.8%]'">
-                    <NuxtImg src="./images/bath-01/under-eye.png" quality="80" format="webp"/>
+                    <NuxtImg src="/images/bath-01/under-eye.png" quality="80" format="webp"/>
                 </div>
                 <div class="absolute top-[48%] left-[44%] w-[5%]">
-                    <NuxtImg src="./images/bath-01/blackpoint-L.webp" quality="80" format="webp"/>
+                    <NuxtImg src="/images/bath-01/blackpoint-L.webp" quality="80" format="webp"/>
                 </div>
                 <div class="absolute top-[48%] left-[51%] w-[5%]">
-                    <NuxtImg src="./images/bath-01/blackpoint-R.webp" quality="80" format="webp"/>
+                    <NuxtImg src="/images/bath-01/blackpoint-R.webp" quality="80" format="webp"/>
                 </div>
             </div>
         </div>
 
         <!-- bubbles -->
         <div class="absolute top-[19%] left-[26.5%] w-[35%]" :class="isCleaning ? 'opacity-100' : 'opacity-0' ">
-            <NuxtImg src="./images/bath-01/bubble-eye2.webp" quality="80" format="webp" class="bubble-eyes"/>
+            <NuxtImg src="/images/bath-01/bubble-eye2.webp" quality="80" format="webp" class="bubble-eyes"/>
         </div>
 
         <div class="absolute top-[19%] left-[38.5%] w-[35%] scale-x-[-1]" :class="isCleaning ? 'opacity-100' : 'opacity-0' ">
-            <NuxtImg src="./images/bath-01/bubble-eye2.webp" quality="80" format="webp" class="bubble-eyes"/>
+            <NuxtImg src="/images/bath-01/bubble-eye2.webp" quality="80" format="webp" class="bubble-eyes"/>
         </div>
 
 
         <div class="absolute top-[14%] left-[27%] w-[45%] face">
-            <NuxtImg src="./images/bath-01/nose.png" quality="80" format="webp"/>
+            <NuxtImg src="/images/bath-01/nose.png" quality="80" format="webp"/>
         </div>
 
         <!-- Hands -->
         <div class="absolute bottom-[-40%] left-0 w-full h-full">
             <div class="relative w-full h-full">
                 <div id="right" @touchstart="startDrag" class="absolute scale-x-[-1] w-[35%] hands" :style="{ left: `${pos.right.left}%`, bottom: `${pos.right.bottom}%` }">
-                    <NuxtImg src="./images/bath-01/handL.png" quality="80" format="webp"/>
+                    <NuxtImg src="/images/bath-01/handL.png" quality="80" format="webp"/>
                 </div>
                 <div id="left" @touchstart="startDrag" class="absolute w-[35%] hands" :style="{ left: `${pos.left.left}%` , bottom: `${pos.left.bottom}%` }">
-                    <NuxtImg src="./images/bath-01/handL.png" quality="80" format="webp"/>
+                    <NuxtImg src="/images/bath-01/handL.png" quality="80" format="webp"/>
                 </div>
             </div>
         </div>
 
         <div class="absolute bottom-0 left-0">
-            <NuxtImg src="./images/bath-01/bg-bar.png" quality="80" format="webp"/>
+            <NuxtImg src="/images/bath-01/bg-bar.png" quality="80" format="webp"/>
         </div>
 
         <div class="absolute flex w-[100%] h-[100%] top-0 left-0 z-[200] justify-center pointer-events-none backdrop-blur-xs transition-all duration-300" :class="isSuccess ? 'opacity-100' : 'opacity-0'">
@@ -148,7 +148,7 @@
 
         <!-- Next Button -->
         <div @touchstart="isGoingToNext = true" class="absolute top-[52%] left-[78%] w-[20%]" :class="isSuccess ? 'opacity-100 z-[201] next' : 'opacity-75 z-[199] pointer-events-none'">
-            <NuxtImg src="./images/bath-01/next.webp" quality="80" format="webp"/>
+            <NuxtImg src="/images/bath-01/next.webp" quality="80" format="webp"/>
         </div>
 
         <!-- fg fade in -->
