@@ -7,7 +7,7 @@
 
         <GeneralMenubar/>
 
-        <div class="absolute top-[-5%] left-[0%] w-full h-full">
+        <div class="absolute top-[0%] left-[0%] w-full h-full">
             <div class="absolute top-[5%] left-[10%] w-[20%] z-[10]">
                 <img :src="images['bath-01-scorebar.png']">
             </div>

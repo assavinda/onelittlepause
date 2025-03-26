@@ -55,7 +55,7 @@
                 <div class="absolute top-[8%] left-[0%] w-[70%]" :style="{ transform: `translateX(${slide}%)` }">
                     <img :src="images['coffee-03-polaroid.png']">
 
-                    <div class="absolute top-[-5%] right-[-5%] w-[40%] dukdik">
+                    <div class="absolute top-[-5%] right-[-5%] w-[40%] transition-all duration-500 dukdik" :class="slide >= 0 ? 'opacity-100' : 'opacity-0'">
                         <img :src="images['coffee-03-bowpink.png']">
                     </div>
 

@@ -2,7 +2,7 @@
     <GeneralContainer ref="container">
         <!-- background images -->
         <div class="absolute top-0 left-0 w-full">
-            <img :src="images['bath-02-BG-2.png']">
+            <NuxtImg src="./images/bath-02/BG-2.png" />
         </div>
 
         <GeneralMenubar/>
@@ -10,11 +10,11 @@
         <!-- Score Bar -->
         <div class="absolute top-[-5%] left-[60%] w-full h-full">
             <div class="absolute top-[5%] left-[10%] w-[20%] z-[10]">
-                <img :src="images['bath-01-scorebar.png']">
+                <NuxtImg src="./images/bath-01/scorebar.png" />
             </div>
 
             <div class="absolute top-[8.1%] left-[10%] w-[5%] z-[10]" :class="currentMood != 'smile' ? 'opacity-100' : 'opacity-0' ">
-                <img :src="images['bath-02-heartbroken.png']">
+                <NuxtImg src="./images/bath-02/heartbroken.png" />
             </div>
 
             <div class="absolute top-[10%] left-[14.5%] w-[14.6%] h-[5%] bg-pink-200 z-[5]">
@@ -25,54 +25,54 @@
         <!-- bubbles -->
         <div class="absolute top-[35%] left-[0%] w-full h-full">
             <div class="absolute top-[0%] left-[5%] bubble-r w-[90%] z-[10]">
-                <img :src="images['bath-02-bubble-back.png']">
+                <NuxtImg src="./images/bath-02/bubble-back.png" />
             </div>
 
             <div class="absolute top-[6%] scale-x-[0.9] left-[5%] bubble w-[90%] z-[10]">
-                <img :src="images['bath-02-bubble-front.png']">
+                <NuxtImg src="./images/bath-02/bubble-front.png" />
             </div>
 
             <div class="absolute top-[17%] left-[5%] bubble-r w-[90%] z-[12]">
-                <img :src="images['bath-02-bubble-front.png']">
+                <NuxtImg src="./images/bath-02/bubble-front.png" />
             </div>
         </div>
 
         <!-- girl -->
         <div class="absolute top-[0%] left-[0%] w-full h-full">
             <div class="absolute top-[14%] left-[36.5%] z-[11] girl w-[28%]">
-                <img :src="images['bath-02-girlnoface.png']">
+                <NuxtImg src="./images/bath-02/girlnoface.png" />
             </div>
 
             <!-- mood -->
             <div class="absolute top-[27%] left-[45.5%] z-[11] w-[10%] girl" :class="currentMood == 'smile' ? 'opacity-100' : 'opacity-0'">
-                <img :src="images['bath-02-face-smile.png']">
+                <NuxtImg src="./images/bath-02/face-smile.png" />
             </div>
 
             <div class="absolute top-[25.6%] left-[45.2%] z-[11] w-[11%] girl" :class="currentMood != 'smile' ? 'opacity-100' : 'opacity-0'">
-                <img :src="images['bath-02-face-sad.png']">
+                <NuxtImg src="./images/bath-02/face-sad.png" />
             </div>
 
             <div class="absolute bottom-[3%] left-[32%] w-[35%] z-[13] girl">
-                <img :src="images['bath-02-hand.png']">
+                <NuxtImg src="./images/bath-02/hand.png" />
             </div>
         </div>
 
         <!-- bubbles -->
         <div class="absolute top-[10%] left-[45%] w-[15%] z-[11] bubble">
-            <img :src="images['bath-02-bubble-head.png']">
+            <NuxtImg src="./images/bath-02/bubble-head.png" />
         </div>
 
         <div class="absolute top-[35%] left-[32%] w-[35%] z-[11] bubble-r">
-            <img :src="images['bath-02-bubble2.png']">
+            <NuxtImg src="./images/bath-02/bubble2.png" />
         </div>
 
         <div class="absolute top-[29%] left-[35%] w-[32%] z-[12] bubble">
-            <img :src="images['bath-02-bubble1.png']">
+            <NuxtImg src="./images/bath-02/bubble1.png" />
         </div>
 
         <!-- shelf -->
         <div class="absolute top-[33%] left-[3%] w-[40%] z-[13]">
-            <img :src="images['bath-02-shelf.png']">
+            <NuxtImg src="./images/bath-02/shelf.png" />
         </div>
 
         <!-- shower -->
@@ -81,16 +81,16 @@
         </div>
 
         <div class="absolute w-[12%] z-[19]" :class="isCleaning ? 'opacity-75' : 'opacity-0'" :style="{ top: `${showerpos.top + 10}%`, left: `${showerpos.left - 2}%`}">
-            <img :src="images['bath-02-namm.png']">
+            <NuxtImg src="./images/bath-02/namm.png" />
         </div>
 
         <!-- temp -->
         <div class="absolute bottom-[-0.25%] left-[0.05%] w-[100%] z-[16]">
-            <img :src="images['bath-02-temperature.png']">
+            <NuxtImg src="./images/bath-02/temperature.png" />
         </div>
 
         <div class="absolute bottom-[6.15%] left-[23.3%] w-[55%] z-[16]">
-            <img :src="images['bath-02-tempbar.png']">
+            <NuxtImg src="./images/bath-02/tempbar.png" />
         </div>
 
         <div class="absolute bottom-[5.85%] left-[22.6%] w-[56.31%] h-[7.35%] z-[20]">
