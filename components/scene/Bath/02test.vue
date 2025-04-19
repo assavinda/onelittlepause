@@ -2,10 +2,10 @@
     <GeneralContainer ref="container">
         <!-- background images -->
         <div class="absolute top-0 left-0 w-full">
-            <img :src="images['bath-02-BG-2.png']" />
+            <img :src="images['bath-02-BG-2.webp']" />
         </div>
 
-        <GeneralMenubar/>
+        <GeneralMenubar @popup="isSuggestShow = true; suggestState = 1"/>
 
         <!-- Score Bar -->
         <div class="absolute top-[-5%] left-[60%] w-full h-full">
@@ -14,7 +14,7 @@
             </div>
 
             <div class="absolute top-[8.1%] left-[10%] w-[5%] z-[10]" :class="currentMood != 'smile' ? 'opacity-100' : 'opacity-0' ">
-                <img :src="images['bath-02-heartbroken.png']">
+                <img :src="images['bath-02-heartbroken.webp']">
             </div>
 
             <div class="absolute top-[10%] left-[14.5%] w-[14.6%] h-[5%] bg-pink-200 z-[5]">
@@ -25,78 +25,86 @@
         <!-- bubbles -->
         <div class="absolute top-[35%] left-[0%] w-full h-full">
             <div class="absolute top-[0%] left-[5%] bubble-r w-[90%] z-[10]">
-                <img :src="images['bath-02-bubble-back.png']">
+                <img :src="images['bath-02-bubble-back.webp']">
             </div>
 
             <div class="absolute top-[6%] scale-x-[0.9] left-[5%] bubble w-[90%] z-[10]">
-                <img :src="images['bath-02-bubble-front.png']">
+                <img :src="images['bath-02-bubble-front.webp']">
             </div>
 
             <div class="absolute top-[17%] left-[5%] bubble-r w-[90%] z-[12]">
-                <img :src="images['bath-02-bubble-front.png']">
+                <img :src="images['bath-02-bubble-front.webp']">
             </div>
         </div>
 
         <!-- girl -->
         <div class="absolute top-[0%] left-[0%] w-full h-full">
             <div class="absolute top-[14%] left-[36.5%] z-[11] girl w-[28%]">
-                <img :src="images['bath-02-girlnoface.png']">
+                <img :src="images['bath-02-girlnoface.webp']">
             </div>
 
             <!-- mood -->
             <div class="absolute top-[27%] left-[45.5%] z-[11] w-[10%] girl" :class="currentMood == 'smile' ? 'opacity-100' : 'opacity-0'">
-                <img :src="images['bath-02-face-smile.png']">
+                <img :src="images['bath-02-face-smile.webp']">
             </div>
 
             <div class="absolute top-[25.6%] left-[45.2%] z-[11] w-[11%] girl" :class="currentMood != 'smile' ? 'opacity-100' : 'opacity-0'">
-                <img :src="images['bath-02-face-sad.png']">
+                <img :src="images['bath-02-face-sad.webp']">
             </div>
 
             <div class="absolute bottom-[3%] left-[32%] w-[35%] z-[13] girl">
-                <img :src="images['bath-02-hand.png']">
+                <img :src="images['bath-02-hand.webp']">
             </div>
         </div>
 
         <!-- bubbles -->
         <div class="absolute top-[10%] left-[45%] w-[15%] z-[11] bubble">
-            <img :src="images['bath-02-bubble-head.png']">
+            <img :src="images['bath-02-bubble-head.webp']">
         </div>
 
         <div class="absolute top-[35%] left-[32%] w-[35%] z-[11] bubble-r">
-            <img :src="images['bath-02-bubble2.png']">
+            <img :src="images['bath-02-bubble2.webp']">
         </div>
 
         <div class="absolute top-[29%] left-[35%] w-[32%] z-[12] bubble">
-            <img :src="images['bath-02-bubble1.png']">
+            <img :src="images['bath-02-bubble1.webp']">
         </div>
 
         <!-- shelf -->
         <div class="absolute top-[33%] left-[3%] w-[40%] z-[13]">
-            <img :src="images['bath-02-shelf.png']">
+            <img :src="images['bath-02-shelf.webp']">
         </div>
 
         <!-- shower -->
-        <div @touchstart="startDrag" @mousedown="startDrag" class="absolute w-[50%] z-[20]" :style="{ top: `${showerpos.top}%`, left: `${showerpos.left}%`}">
-            <img :src="images['bath-02-fakbua.png']">
+        <div @touchstart="startDrag" @mousedown="startDrag" class="absolute w-[50%] z-[20] cursor-grab" :style="{ top: `${showerpos.top}%`, left: `${showerpos.left}%`}">
+            <img :src="images['bath-02-fakbua.webp']">
         </div>
 
         <div class="absolute w-[12%] z-[19]" :class="isCleaning ? 'opacity-75' : 'opacity-0'" :style="{ top: `${showerpos.top + 10}%`, left: `${showerpos.left - 2}%`}">
-            <img :src="images['bath-02-namm.png']">
+            <img :src="images['bath-02-namm.webp']">
+        </div>
+        
+        <div class="absolute bottom-[16%] right-[45%] p-[0.5%] bg-white rounded-full origin-bottom border-2 border-green-500 transition-all z-[30]" :class="canShower ? 'opacity-100 scale-[1.2]' : 'opacity-0 scale-0'">
+            <p class="text-green-400 responsive-text">Now !</p>
         </div>
 
         <!-- temp -->
         <div class="absolute bottom-[-0.25%] left-[0.05%] w-[100%] z-[16]">
-            <img :src="images['bath-02-temperature.png']">
+            <img :src="images['bath-02-temperature.webp']">
         </div>
 
-        <div class="absolute bottom-[6.15%] left-[23.3%] w-[55%] z-[16]">
+        <div class="absolute bottom-[6.1%] left-[23.3%] w-[55%] z-[16]">
             <img :src="images['bath-02-tempbar.png']">
         </div>
+
+        
 
         <div class="absolute bottom-[5.85%] left-[22.6%] w-[56.31%] h-[7.35%] z-[20]">
             <input
             @touchstart="isSliderDragging = true"
+            @mousedown="isSliderDragging = true"
             @touchend="onSliderRelease($event)"
+            @mouseup="onSliderRelease($event)"
                 type="range"
                 :min="sliderMin"
                 :max="sliderMax"
@@ -114,8 +122,28 @@
         </div>
 
         <!-- Next Button -->
-        <div @touchstart="isGoingToNext = true" class="absolute top-[78%] left-[87%] w-[12%]" :class="isSuccess ? 'opacity-100 z-[201] next' : 'opacity-75 z-[199] pointer-events-none'">
+        <div @click="isGoingToNext = true" class="absolute top-[78%] left-[87%] w-[12%] cursor-pointer" :class="isSuccess ? 'opacity-100 z-[201] next' : 'opacity-75 z-[199] pointer-events-none'">
             <img :src="images['bath-02-next.png']">
+        </div>
+
+        <!-- Suggestion -->
+        <div class="absolute flex w-[100%] h-[100%] top-0 left-0 z-[200] justify-center backdrop-blur-xs transition-all duration-300" :class="isSuggestShow ? 'opacity-100' : 'opacity-0 pointer-events-none'">
+            <div class="w-full h-full opacity-25"></div>
+            <div class="absolute w-[60%] top-[0%]">
+                <img :src="images[`bath-02-popup-bath02-bg.png`]">
+            </div>
+            <div class="absolute w-[30%] top-[35%] left-[34%]">
+                <img :src="images[`bath-02-popup-bath02-${suggestState}.png`]">
+            </div>
+            <div class="absolute top-[68%] left-[46%] w-[5%] cursor-pointer transition-all hover:scale-[1.05]" @click="isSuggestShow = false; countDown()">
+                <img :src="images['general-buttonX.png']">
+            </div>
+            <div class="absolute top-[45%] right-[28%] w-[5%] cursor-pointer transition-all hover:scale-[1.05]" :class="suggestState < 4 ? 'opacity-100' : 'opacity-50'" @click="suggestState < 4 ? suggestState += 1 : suggestState = 4">
+                <img :src="images['general-button_.png']">
+            </div>
+            <div class="absolute top-[45%] left-[26.2%] w-[5%] cursor-pointer transition-all rotate-[180deg] hover:scale-[1.05]" :class="suggestState > 1 ? 'opacity-100' : 'opacity-50'" @click="suggestState > 1 ? suggestState -= 1 : suggestState = 1">
+                <img :src="images['general-button_.png']">
+            </div>
         </div>
 
         <!-- fg fade in -->
@@ -133,6 +161,8 @@ const images = inject('preloaded')
 // check if all img has loaded
 const isLoaded = ref(false);
 const progressPercent = ref(0)
+const isSuggestShow = ref(true)
+const suggestState = ref(1)
 
 onMounted(() => {
     checkImagesLoaded((progress) => {
@@ -293,18 +323,32 @@ const sliderMax = ref(100);
 const sliderStep = ref(1);
 
 const canShower = ref(false)
+const isSliderIncreasing = ref(true)
+const isSliderDecreasing = ref(false)
 
 let interval
 onMounted(() => {
     interval = setInterval(() => {
         if (!isSliderDragging.value) {
-            slide.value = Math.min(slide.value + 1, sliderMax.value);
+            if (isSliderIncreasing.value && slide.value < sliderMax.value) {
+                slide.value = Math.min(slide.value + 1, sliderMax.value);
+            } else if (isSliderDecreasing.value && slide.value > sliderMin.value) {
+                slide.value = Math.max(slide.value - 1, sliderMin.value);
+            }
+
+            if (slide.value === sliderMin.value) {
+                isSliderIncreasing.value = true;
+                isSliderDecreasing.value = false;
+            } else if (slide.value === sliderMax.value) {
+                isSliderIncreasing.value = false;
+                isSliderDecreasing.value = true;
+            }
         }
     }, 50);
 })
 
 watch(slide, (newValue) => {
-    if (newValue >= 46 && newValue <= 62) {
+    if (newValue >= 42 && newValue <= 62) {
         canShower.value = true
     }
     else {
@@ -400,4 +444,15 @@ function onSliderRelease(e) {
     transform: scale(1.1);
 }
 
+.responsive-text {
+    font-size: 3.4816vh;
+    font-family: 'wintermouse', sans-serif;
+}
+
+@media (max-aspect-ratio: 16/9) {
+    .responsive-text {
+        font-size: 1.9584vw;
+        font-family: 'wintermouse', sans-serif;
+    }
+}
 </style>

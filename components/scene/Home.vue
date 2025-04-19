@@ -4,7 +4,7 @@
         <!-- background images -->
 
         <div class="absolute top-0 left-0">
-            <img :src="images['home-home-bg.webp']">
+            <img :src="images['home-home-bg.png']">
         </div>
 
         <div class="absolute top-[27%] left-[5%] w-[47%]">
@@ -41,7 +41,7 @@
 
         <!-- play button -->
 
-        <button @touchstart="isStartGame = true" class="absolute top-[80%] left-[39%] w-[20%] cursor-pointer playbtn">
+        <button @click="isStartGame = true" class="absolute top-[80%] left-[39%] w-[20%] cursor-pointer transition-all playbtn hover:scale-[1.05]">
             <img :src="images['home-play-btn.webp']">
         </button>
 

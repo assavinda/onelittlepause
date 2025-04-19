@@ -6,29 +6,27 @@
             <img :src="images['zones-zones-bg.png']">
         </div>
 
+        <GeneralMenubar/>
+
         <div class="absolute bottom-[0%] left-[58%] w-[34%]">
             <img :src="images['zones-girl.png']">
         </div>
 
-        <div class="absolute top-[60%] left-[64.2%] w-[20%] fan">
+        <div class="absolute top-[60%] left-[65.2%] w-[19%] fan">
             <img :src="images['zones-fan.png']">
         </div>
 
-        <div class="absolute top-[80%] left-[58%] w-[34%]">
+        <div class="absolute top-[80%] left-[59.6%] w-[31.2%]">
             <img :src="images['zones-girl-arm.png']">
-        </div>
-        
-        <div class="absolute top-[0%] left-[21%] w-[25%] bow">
-            <img :src="images['zones-bow.png']">
         </div>
 
         <!-- buttons -->
 
-        <button @touchstart="isGameSelected = true; game = 'Bath01'" class="absolute top-[20%] left-[15%] w-[36%]">
+        <button @click="isGameSelected = true; game = 'Bath01'" class="absolute top-[5%] left-[15%] w-[36%] cursor-pointer transition-all hover:scale-[1.02]">
             <img :src="images['zones-bathtime.png']">
         </button>
 
-        <button @touchstart="isGameSelected = true; game = 'Coffee01'" class="absolute top-[50%] left-[15%] w-[36%]">
+        <button @click="isGameSelected = true; game = 'Coffee01'" class="absolute top-[45%] left-[15%] w-[36%] cursor-pointer transition-all hover:scale-[1.02]">
             <img :src="images['zones-superrelax.png']">
         </button>
 

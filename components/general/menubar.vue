@@ -1,10 +1,10 @@
 <template>
     <div class="absolute top-0 left-0 w-full h-[16%] z-[300] p-[1%]">
         <div class="flex justify-between">
-            <div @click="reloadPage" class="w-[6%]">
+            <div @click="reloadPage" class="w-[6%] cursor-pointer transition-all hover:scale-[1.05]">
                 <img :src="images['general-home-icon.png']">
             </div>
-            <div @click="$emit('popup')" class="w-[5%]">
+            <div @click="$emit('popup')" class="w-[5%] cursor-pointer transition-all hover:scale-[1.05]">
                 <img :src="images['general-info-icon.png']">
             </div>
         </div>

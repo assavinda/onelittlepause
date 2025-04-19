@@ -3,79 +3,83 @@
         <!-- background images -->
 
         <div class="absolute top-0 left-0">
-            <img :src="images['coffee-02-bg-coffee02.jpg']">
+            <img :src="images['coffee-02-bg-coffee02.webp']">
         </div>
+
+        <GeneralMenubar @popup="isSuggestShow = true"/>
 
         <!-- Colors -->
         <div class="absolute flex flex-col gap-[6%] w-[5.3%] h-[46%] top-[23%] left-[77.8%]">
-            <div v-for="arrow,color in brushColors" class="colorpalette" @touchstart="setColor(color,arrow)" :style="{ backgroundColor: color }"></div>
+            <div v-for="arrow,color in brushColors" class="colorpalette" @click="setColor(color,arrow)" :style="{ backgroundColor: color }"></div>
         </div>
 
         <!-- Arrow -->
         <div class="absolute left-[67%] w-[17%] pointer-events-none" :style="{top: currentArrowPos + '%'}">
-            <img :src="images['coffee-02-arrow.png']">
+            <img :src="images['coffee-02-arrow.webp']">
         </div>
 
         <!-- Faces Menu -->
         <div class="absolute top-[10%] left-[-18%] w-[67%] pointer-events-none">
-            <img :src="images['coffee-02-frame.png']">
+            <img :src="images['coffee-02-frame.webp']">
         </div>
 
         <div class="absolute top-[32%] left-[8%] w-[12.5%] space-y-[5%] flex flex-col">
-            <div @touchstart="currentFaceIndex != 2 ? currentFaceIndex += 1 : currentFaceIndex = 0" class="flex justify-center">
-                <img class="w-[60%]" :src="images['coffee-02-arrow-up.png']">
+            <div @click="currentFaceIndex != 2 ? currentFaceIndex += 1 : currentFaceIndex = 0" class="flex justify-center cursor-pointer transition-all hover:scale-[1.05]">
+                <img class="w-[60%]" :src="images['coffee-02-arrow-up.webp']">
             </div>
 
             <div class="relative">
                 <div>
-                <img :src="images['coffee-02-plain-faceboard.png']">
+                <img :src="images['coffee-02-plain-faceboard.webp']">
                 </div>
-                <div @touchstart="setFace(`${facesList[currentFaceIndex]}`)" class="absolute top-[5%]">
-                    <img :src="images[`coffee-02-eye-${facesList[currentFaceIndex]}.png`]">
+                <div @click="setFace(`${facesList[currentFaceIndex]}`)" class="absolute top-[5%] cursor-pointer">
+                    <img :src="images[`coffee-02-eye-${facesList[currentFaceIndex]}.webp`]">
                 </div>
             </div>
 
-            <div @touchstart="currentFaceIndex != 0 ? currentFaceIndex -= 1 : currentFaceIndex = 2" class="flex justify-center">
-                <img class="w-[60%]" :src="images['coffee-02-arrow-down.png']">
+            <div @click="currentFaceIndex != 0 ? currentFaceIndex -= 1 : currentFaceIndex = 2" class="flex justify-center cursor-pointer transition-all hover:scale-[1.05]">
+                <img class="w-[60%]" :src="images['coffee-02-arrow-down.webp']">
             </div>
 
-            <div @touchstart="clearCanvas" class="flex justify-center">
-                <img class="w-[70%]" :src="images['coffee-02-delete-btn.png']">
+            <div @click="clearCanvas" class="flex justify-center cursor-pointer transition-all hover:scale-[1.05]">
+                <img class="w-[70%]" :src="images['coffee-02-delete-btn.webp']">
             </div>
         </div>
 
         <!-- Save Button -->
-        <div @touchstart="saveDrawing" class="absolute top-[77%] right-[3%] w-[16%]">
-            <img :src="images['coffee-02-save-btn.png']">
+        <div @click="saveDrawing" class="absolute top-[77%] right-[3%] w-[16%] cursor-pointer transition-all hover:scale-[1.05]">
+            <img :src="images['coffee-02-save-btn.webp']">
         </div>
 
         <!-- Drawing Canvas -->
         <div class="absolute top-[30%] left-[28.5%] w-[45%]">
           <div>
-                <img :src="images['coffee-02-glasstodraw.png']">
+                <img :src="images['coffee-02-glasstodraw.webp']">
           </div>
 
           <div class="absolute left-[34.2%] top-[-9%] w-[30%] pointer-events-none">
-                <img :src="images[`coffee-02-${currentFace}-eyes.png`]">
+                <img :src="images[`coffee-02-${currentFace}-eyes.webp`]">
           </div>
 
           <div class="absolute left-[32.2%] top-[56%] w-[35%] pointer-events-none">
-                <img :src="images[`coffee-02-${currentFace}-mouth.png`]">
+                <img :src="images[`coffee-02-${currentFace}-mouth.webp`]">
           </div>
 
           <canvas
-            ref="drawingCanvas" @touchstart="startDrawing" @touchmove="draw" @touchcancel="stopDrawing" @touchend="stopDrawing"
-            class="absolute left-[18%] top-[5%] rounded-[100%]" :style="{width: canvasWidth + '%', height: canvasHeight + '%'}"
+            ref="drawingCanvas" 
+            @touchstart="startDrawing" @touchmove="draw" @touchcancel="stopDrawing" @touchend="stopDrawing"
+            @mousedown="startDrawing" @mousemove="draw" @mouseup="stopDrawing"
+            class="absolute left-[18%] top-[5%] rounded-[100%] cursor-crosshair" :style="{width: canvasWidth + '%', height: canvasHeight + '%'}"
           ></canvas>
         </div>
 
         <!-- Suggestion -->
         <div class="absolute flex w-[100%] h-[100%] top-0 left-0 z-[200] justify-center backdrop-blur-xs transition-all duration-300" :class="isSuggestShow ? 'opacity-100' : 'opacity-0 pointer-events-none'">
             <div class="w-full h-full opacity-25"></div>
-            <div class="absolute w-[65%] top-[3%]">
+            <div class="absolute w-[45%] top-[12%]">
                 <img :src="images['coffee-02-popup-game02.png']">
             </div>
-            <div class="absolute top-[70%] w-[8%] cursor-pointer" @touchstart="isSuggestShow = false">
+            <div class="absolute top-[70%] w-[8%] cursor-pointer transition-all hover:scale-[1.05]" @click="isSuggestShow = false">
                 <img :src="images['general-X-icon.png']">
             </div>
         </div>
@@ -204,8 +208,8 @@ function clearCanvas() {
 function saveDrawing() {
   const dataURL = drawingCanvas.value.toDataURL('image/png');
 
-  localStorage.setItem('savedDrawing', dataURL);
-  localStorage.setItem('savedFace', currentFace.value);
+  sessionStorage.setItem('savedDrawing', dataURL);
+  sessionStorage.setItem('savedFace', currentFace.value);
 
   isGoingToNext.value = true
 }

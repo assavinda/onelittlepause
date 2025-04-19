@@ -2,40 +2,40 @@
     <GeneralContainer>
         <!-- background images -->
         <div class="absolute top-0 left-0">
-            <img :src="images['coffee-03-bg-coffee03.png']">
+            <img :src="images['coffee-03-bg-coffee03.webp']">
         </div>
 
-        <GeneralMenubar/>
+        <GeneralMenubar @popup="isSuggestShow = true"/>
 
         <!-- dukdik -->
         <div class="absolute top-[15%] left-[10%] w-[10%] dukdik">
-            <img :src="images['coffee-03-bow.png']">
+            <img :src="images['coffee-03-bow.webp']">
         </div>
 
         <div class="absolute bottom-[12%] right-[20%] w-[6%] dukdik">
-            <img :src="images['coffee-03-f2.png']">
+            <img :src="images['coffee-03-f2.webp']">
         </div>
 
         <div class="absolute bottom-[45%] left-[7%] w-[6.5%] dukdik">
-            <img :src="images['coffee-03-f1.png']">
+            <img :src="images['coffee-03-f1.webp']">
         </div>
 
         <div class="absolute top-[20%] left-[15%] w-[45%] h-[50%]">
             <div class="relative w-full h-full">
                 <div class="absolute top-0 left-0 w-full">
-                    <img :src="images['coffee-03-camera.png']">
+                    <img :src="images['coffee-03-camera.webp']">
                 </div>
                 <div class="absolute top-[38%] left-[16%] w-[45%] rotate-[-2deg] blur-[2px] transition-all duration-900" :class="slide < -60 ? 'opacity-100' : 'opacity-10 blur-sm'">
                         <div>
-                            <img :src="images['coffee-02-glasstodraw.png']">
+                            <img :src="images['coffee-02-glasstodraw.webp']">
                         </div>
 
                         <div class="absolute left-[34.2%] top-[-9%] w-[30%] pointer-events-none">
-                            <img :src="images[`coffee-02-${currentFace}-eyes.png`]">
+                            <img :src="images[`coffee-02-${currentFace}-eyes.webp`]">
                         </div>
 
                         <div class="absolute left-[32.2%] top-[56%] w-[35%] pointer-events-none">
-                            <img :src="images[`coffee-02-${currentFace}-mouth.png`]">
+                            <img :src="images[`coffee-02-${currentFace}-mouth.webp`]">
                         </div>
 
                         <canvas
@@ -53,23 +53,23 @@
         <div class="absolute top-[28%] left-[58.7%] w-[30%] h-[50%] rotate-[-2deg]">
             <div class="absolute top-[0%] left-0 w-[100%] h-[100%] mask-letter">
                 <div class="absolute top-[8%] left-[0%] w-[70%]" :style="{ transform: `translateX(${slide}%)` }">
-                    <img :src="images['coffee-03-polaroid.png']">
+                    <img :src="images['coffee-03-polaroid.webp']">
 
                     <div class="absolute top-[-5%] right-[-5%] w-[40%] transition-all duration-500 dukdik" :class="slide >= 0 ? 'opacity-100' : 'opacity-0'">
-                        <img :src="images['coffee-03-bowpink.png']">
+                        <img :src="images['coffee-03-bowpink.webp']">
                     </div>
 
                     <div class="absolute top-[16%] left-[12%] w-[75%] transition-all duration-1200" :class="slide >= -40 ? 'opacity-100' : 'opacity-10 blur-sm'">
                         <div>
-                            <img :src="images['coffee-02-glasstodraw.png']">
+                            <img :src="images['coffee-02-glasstodraw.webp']">
                         </div>
 
                         <div class="absolute left-[34.2%] top-[-9%] w-[30%] pointer-events-none">
-                            <img :src="images[`coffee-02-${currentFace}-eyes.png`]">
+                            <img :src="images[`coffee-02-${currentFace}-eyes.webp`]">
                         </div>
 
                         <div class="absolute left-[32.2%] top-[56%] w-[35%] pointer-events-none">
-                            <img :src="images[`coffee-02-${currentFace}-mouth.png`]">
+                            <img :src="images[`coffee-02-${currentFace}-mouth.webp`]">
                         </div>
 
                         <canvas
@@ -96,27 +96,27 @@
         </div>
 
         <!-- Save Button -->
-        <div ref="savebtn" @touchstart="saveAsPNG" class="absolute bottom-[5%] right-[5%] w-[10%] z-[120]" :class="isPopUpShow ? 'opacity-100 next' : 'opacity-70 pointer-events-none' ">
-            <img :src="images['coffee-03-save-letter.png']">
+        <div ref="savebtn" @click="saveAsPNG" class="absolute bottom-[5%] right-[5%] w-[10%] z-[120] cursor-pointer" :class="isPopUpShow ? 'opacity-100 next' : 'opacity-70 pointer-events-none' ">
+            <img :src="images['coffee-03-save-letter.webp']">
         </div>
 
         <!-- Paper Popup -->
         <div ref="paperPopup" class="absolute top-0 left-0 w-[100%] h-[100%] backdrop-blur-xs z-[100] transition-all duration-500" :class="isPopUpShow ? 'opacity-100' : 'opacity-0 pointer-events-none' ">
             <div class="relative w-[100%] flex justify-center pt-[7%]">
                 <div id="LetterImage" class="relative w-[40%] transition-all duration-700 origin-right" :class="isPopUpShow ? 'scale-[1]' : 'scale-[0]'">
-                    <img :src="images['coffee-03-polaroid.png']">
+                    <img :src="images['coffee-03-polaroid.webp']">
 
                     <div class="absolute top-[16%] left-[12%] w-[75%]">
                         <div>
-                            <img :src="images['coffee-02-glasstodraw.png']">
+                            <img :src="images['coffee-02-glasstodraw.webp']">
                         </div>
 
                         <div class="absolute left-[34.2%] top-[-9%] w-[30%] pointer-events-none">
-                            <img :src="images[`coffee-02-${currentFace}-eyes.png`]">
+                            <img :src="images[`coffee-02-${currentFace}-eyes.webp`]">
                         </div>
 
                         <div class="absolute left-[32.2%] top-[56%] w-[35%] pointer-events-none">
-                            <img :src="images[`coffee-02-${currentFace}-mouth.png`]">
+                            <img :src="images[`coffee-02-${currentFace}-mouth.webp`]">
                         </div>
 
                         <canvas
@@ -126,6 +126,17 @@
                         ></canvas>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Suggestion -->
+        <div class="absolute flex w-[100%] h-[100%] top-0 left-0 z-[200] justify-center backdrop-blur-xs transition-all duration-300" :class="isSuggestShow ? 'opacity-100' : 'opacity-0 pointer-events-none'">
+            <div class="w-full h-full opacity-25"></div>
+            <div class="absolute w-[50%] top-[7%]">
+                <img :src="images['coffee-03-popup-coffee03.png']">
+            </div>
+            <div class="absolute top-[60%] w-[8%] cursor-pointer transition-all hover:scale-[1.05]" @click="isSuggestShow = false">
+                <img :src="images['general-X-icon.png']">
             </div>
         </div>
 
@@ -139,10 +150,11 @@
 import html2canvas from 'html2canvas';
 
 const images = inject("preloaded");
-let coffeeImage = localStorage.getItem('savedDrawing')
+let coffeeImage = sessionStorage.getItem('savedDrawing')
 // check if all img has loaded
 const isLoaded = ref(false);
 const progressPercent = ref(0)
+const isSuggestShow = ref(true)
 
 onMounted(() => {
     checkImagesLoaded((progress) => {
@@ -160,7 +172,7 @@ onMounted(() => {
         progressPercent.value = progress
     });
     showDrawing();
-    currentFace.value = localStorage.getItem('savedFace');
+    currentFace.value = sessionStorage.getItem('savedFace');
 });
 
 
@@ -176,7 +188,7 @@ const currentFace = ref('blank');
 
 onMounted(() => {
     showDrawing();
-    currentFace.value = localStorage.getItem('savedFace');
+    currentFace.value = sessionStorage.getItem('savedFace');
 });
 
 function showDrawing() {
@@ -185,7 +197,7 @@ function showDrawing() {
     const outputContext3 = outputCanvas3.value.getContext('2d');
 
     const img = new Image();
-    img.src = localStorage.getItem('savedDrawing');
+    img.src = sessionStorage.getItem('savedDrawing');
 
     img.onload = () => {
         const scaleFactor = 1;
@@ -245,6 +257,8 @@ function saveAsPNG() {
             link.href = dataUrl;
             link.download = 'letter-image.png'; 
             link.click();
+
+            reloadPage()
         }).catch((error) => {
             console.error('Error:', error);
         });
@@ -252,12 +266,16 @@ function saveAsPNG() {
         console.error("Error");
     }
 }
+
+function reloadPage() {
+    window.location.reload()
+}
 </script>
 
 <style scoped>
 .mask-letter {
-    -webkit-mask-image: url(/images/coffee-03/mask-letter.png);
-    mask-image: url(/images/coffee-03/mask-letter.png);
+    -webkit-mask-image: url(/images/coffee-03/mask-letter.webp);
+    mask-image: url(/images/coffee-03/mask-letter.webp);
     mask-repeat: no-repeat;
     -webkit-mask-position: center;
     mask-position: center;
@@ -282,7 +300,7 @@ function saveAsPNG() {
     appearance: none;
     width: 15%;
     height: auto;
-    background-image: url(/images/coffee-03/letter-thumb.png);
+    background-image: url(/images/coffee-03/letter-thumb.webp);
     background-color: transparent;
     background-size: contain;
     background-repeat: no-repeat;
@@ -295,7 +313,7 @@ function saveAsPNG() {
 .slider::-moz-range-thumb {
     width: 15%;
     height: auto;
-    background-image: url(/images/coffee-03/letter-thumb.png);
+    background-image: url(/images/coffee-03/letter-thumb.webp);
     background-color: transparent;
     background-size: contain;
     background-repeat: no-repeat;

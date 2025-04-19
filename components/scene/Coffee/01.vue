@@ -5,11 +5,11 @@
             <img :src="images['coffee-01-bg-coffee01.webp']">
         </div>
 
-        <GeneralMenubar/>
+        <GeneralMenubar @popup="isSuggestShow = true"/>
 
         <!-- ML frame -->
         <div class="absolute top-[7%] left-[37%] w-[26%]">
-            <img :src="images['coffee-01-ml-frame.png']">
+            <img :src="images['coffee-01-ml-frame.webp']">
         </div>
 
         <!-- Steam -->
@@ -19,7 +19,7 @@
 
         <!-- Coffee Mix -->
         <div class="absolute top-[15%] left-[17.7%] w-[65%] z-[10]">
-            <img :src="images['coffee-01-cup-coffee.png']">
+            <img :src="images['coffee-01-cup-coffee.webp']">
         </div>
 
         <div class="absolute top-[55%] left-[43%] w-[25%] z-[16]">
@@ -38,13 +38,13 @@
 
         <!-- Coffee Filter -->
         <div class="absolute top-[15.8%] left-[19.85%] w-[65%] z-[9] pointer-events-none">
-            <img :src="images['coffee-01-coffee-filter.png']">
+            <img :src="images['coffee-01-coffee-filter.webp']">
         </div>
 
         <!-- Coffee Mask -->
 
         <div class="mask-coffee absolute bottom-[12.9%] left-[39.4%] z-[11] w-[21.6%]">
-            <img ref="coffeeFill" class="w-[100%]" :src="images['coffee-01-coffee-fill.png']" :style=" { transform: `translateY(${fill+7}%)` }">
+            <img ref="coffeeFill" class="w-[100%]" :src="images['coffee-01-coffee-fill.webp']" :style=" { transform: `translateY(${fill+7}%)` }">
             <div class="flex justify-center">
                 <div class="absolute w-[75%] z-[12]" :style="{ top: `${fill-9}%` }"> 
                     <img :src="images['coffee-01-surface.webp']">
@@ -53,8 +53,8 @@
         </div>
 
         <!-- Pot (Dragable) -->
-        <div @touchstart="startDrag" class="absolute left-0 top-0 w-[30%] z-[190] cursor-grab" :class="isPouring ? 'rotate-[-42deg]' : '' " :style="{ top: `${pos.top}%`, left: `${pos.left}%`}">
-            <img :src="images['coffee-01-potnew.png']">
+        <div @touchstart="startDrag" @mousedown="startDrag" class="absolute left-0 top-0 w-[30%] z-[190] cursor-grab" :class="isPouring ? 'rotate-[-42deg]' : '' " :style="{ top: `${pos.top}%`, left: `${pos.left}%`}">
+            <img :src="images['coffee-01-potnew.webp']">
         </div>
 
         <!-- ML text -->
@@ -67,7 +67,7 @@
         </div>
 
         <!-- Next Button -->
-        <div @touchstart="isGoingToNext = true" class="absolute top-[72%] left-[80%] w-[20%]" :class="isSuccess ? 'opacity-100 z-[201] next' : 'opacity-75 z-[199] pointer-events-none'">
+        <div @click="isGoingToNext = true" class="absolute top-[72%] left-[80%] w-[20%]" :class="isSuccess ? 'opacity-100 z-[201] next cursor-pointer' : 'opacity-75 z-[199] pointer-events-none'">
             <img :src="images['coffee-01-butt.png']">
         </div>
 
@@ -90,10 +90,10 @@
         <!-- Suggestion -->
         <div class="absolute flex w-[100%] h-[100%] top-0 left-0 z-[200] justify-center backdrop-blur-xs transition-all duration-300" :class="isSuggestShow ? 'opacity-100' : 'opacity-0 pointer-events-none'">
             <div class="w-full h-full opacity-25"></div>
-            <div class="absolute w-[65%] top-[-3%]">
-                <img :src="images['coffee-01-suggest-coffee01.webp']">
+            <div class="absolute w-[60%] top-[-3%]">
+                <img :src="images['coffee-01-suggest-coffee01.png']">
             </div>
-            <div class="absolute top-[70%] w-[8%] cursor-pointer" @touchstart="isSuggestShow = false">
+            <div class="absolute top-[70%] w-[8%] cursor-pointer transition-all hover:scale-[1.05]" @click="isSuggestShow = false">
                 <img :src="images['general-X-icon.png']">
             </div>
         </div>
@@ -170,6 +170,8 @@ function startDrag(e) {
 
     document.addEventListener('touchmove', onDrag);
     document.addEventListener('touchend', stopDrag);
+    document.addEventListener('mousemove', onDrag);
+    document.addEventListener('mouseup', stopDrag);
 }
 
 function onDrag(e) {
@@ -206,6 +208,8 @@ function stopDrag() {
 
     document.removeEventListener('touchmove', onDrag);
     document.removeEventListener('touchend', stopDrag);
+    document.removeEventListener('mousemove', onDrag);
+    document.removeEventListener('mouseup', stopDrag);
 }
 
 // pouring system ----------------------------------------------------------
@@ -297,14 +301,14 @@ function animateWater() {
     }, framerate);
 }
 
-const coffeeCurrentFrame = ref('coffee-01-cfpour3.png')
+const coffeeCurrentFrame = ref('coffee-01-cfpour3.webp')
 let coffeeInterval
 
 function animateCoffee() {
     let frame = 1;
     coffeeInterval = setInterval(() => {
         if (frame > 3) frame = 1;
-        coffeeCurrentFrame.value = `coffee-01-cfpour${frame}.png`;
+        coffeeCurrentFrame.value = `coffee-01-cfpour${frame}.webp`;
         frame++;
     }, framerate);
 }
@@ -335,8 +339,8 @@ function restart() {
 }
 
 .mask-coffee {
-    -webkit-mask-image: url(/images/coffee-01/mask.png);
-    mask-image: url(/images/coffee-01/mask.png);
+    -webkit-mask-image: url(/images/coffee-01/mask.webp);
+    mask-image: url(/images/coffee-01/mask.webp);
     mask-repeat: no-repeat;
     -webkit-mask-position: center;
     mask-position: center;

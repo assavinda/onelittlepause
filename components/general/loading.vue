@@ -2,7 +2,7 @@
     <section class="absolute top-0 left-0 w-full h-full bg-white pointer-events-none z-[500]">
         <div class="flex flex-col w-full h-full justify-center place-items-center transition-opacity duration-300" :class="progress >= 100 ? 'opacity-0' : 'opacity-100' ">
             <div class="w-[20%] mb-[2%]">
-                <img :src="images['general-logo.png']">
+                <img :src="images['general-logo.webp']">
             </div>
             <div class="w-[40%] bg-gray-200 rounded-full h-[2%]">
                 <div class="bg-red-500 h-full rounded-full transition-all duration-300" :style="{width: progress + '%'}"></div>

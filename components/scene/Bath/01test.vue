@@ -5,11 +5,11 @@
             <img :src="images['bath-01-bg-bath-game01.webp']">
         </div>
 
-        <GeneralMenubar/>
+        <GeneralMenubar @popup="isSuggestShow = true; isSuggestShow ? stopTime() : console.log('continue')"/>
 
         <div class="absolute top-[0%] left-[0%] w-full h-full">
             <div class="absolute top-[5%] left-[10%] w-[20%] z-[10]">
-                <img :src="images['bath-01-scorebar.png']">
+                <img :src="images['bath-01-scorebar.webp']">
             </div>
 
             <div class="absolute top-[10%] left-[14.5%] w-[14.6%] h-[5%] bg-pink-200 z-[5]">
@@ -18,7 +18,7 @@
         </div>
         <!-- Time -->
         <div class="absolute top-[7%] right-[10%] w-[17%]">
-            <img :src="images['bath-01-time.png']">
+            <img :src="images['bath-01-time.webp']">
         </div>
 
         <div class="absolute top-[14%] left-[77.3%] w-[30%]">
@@ -91,7 +91,7 @@
                     <img :src="images['bath-01-acne.webp']">
                 </div>
                 <div class="absolute w-[18%]" :class="currentMood == 'smile' ? 'rotate-[2deg] top-[40%] left-[41.5%]' : 'top-[36%] left-[41.8%]'">
-                    <img :src="images['bath-01-under-eye.png']">
+                    <img :src="images['bath-01-under-eye.webp']">
                 </div>
                 <div class="absolute top-[48%] left-[44%] w-[5%]">
                     <img :src="images['bath-01-blackpoint-L.webp']">
@@ -113,17 +113,17 @@
 
 
         <div class="absolute top-[14%] left-[27%] w-[45%] face">
-            <img :src="images['bath-01-nose.png']">
+            <img :src="images['bath-01-nose.webp']">
         </div>
 
         <!-- Hands -->
         <div class="absolute bottom-[-40%] left-0 w-full h-full">
             <div class="relative w-full h-full">
-                <div id="right" @touchstart="startDrag" class="absolute scale-x-[-1] w-[35%] hands" :style="{ left: `${pos.right.left}%`, bottom: `${pos.right.bottom}%` }">
-                    <img :src="images['bath-01-handL.png']">
+                <div id="right" @touchstart="startDrag" @mousedown="startDrag" class="absolute scale-x-[-1] w-[35%] hands cursor-grab" :style="{ left: `${pos.right.left}%`, bottom: `${pos.right.bottom}%` }">
+                    <img :src="images['bath-01-handL.webp']">
                 </div>
-                <div id="left" @touchstart="startDrag" class="absolute w-[35%] hands" :style="{ left: `${pos.left.left}%` , bottom: `${pos.left.bottom}%` }">
-                    <img :src="images['bath-01-handL.png']">
+                <div id="left" @touchstart="startDrag" @mousedown="startDrag" class="absolute w-[35%] hands cursor-grab" :style="{ left: `${pos.left.left}%` , bottom: `${pos.left.bottom}%` }">
+                    <img :src="images['bath-01-handL.webp']">
                 </div>
             </div>
         </div>
@@ -147,8 +147,19 @@
         </div>
 
         <!-- Next Button -->
-        <div @touchstart="isGoingToNext = true" class="absolute top-[52%] left-[78%] w-[20%]" :class="isSuccess ? 'opacity-100 z-[201] next' : 'opacity-75 z-[199] pointer-events-none'">
+        <div @click="isGoingToNext = true" class="absolute top-[52%] left-[78%] w-[20%] cursor-pointer" :class="isSuccess ? 'opacity-100 z-[201] next' : 'opacity-75 z-[199] pointer-events-none'">
             <img :src="images['bath-01-next.webp']">
+        </div>
+
+        <!-- Suggestion -->
+        <div class="absolute flex w-[100%] h-[100%] top-0 left-0 z-[200] justify-center backdrop-blur-xs transition-all duration-300" :class="isSuggestShow ? 'opacity-100' : 'opacity-0 pointer-events-none'">
+            <div class="w-full h-full opacity-25"></div>
+            <div class="absolute w-[45%] top-[8%]">
+                <img :src="images['bath-01-popup-bath01.png']">
+            </div>
+            <div class="absolute top-[71%] left-[46%] w-[5%] cursor-pointer transition-all hover:scale-[1.05]" @click="isSuggestShow = false; countDown()">
+                <img :src="images['general-buttonX.png']">
+            </div>
         </div>
 
         <!-- fg fade in -->
@@ -163,6 +174,7 @@
 const images = inject('preloaded')
 const isGoingToNext = ref(false)
 const isCleaning = ref(false)
+const isSuggestShow = ref(true)
 
 // check if all img has loaded
 const isLoaded = ref(false);
@@ -192,10 +204,6 @@ const timeString = ref('15')
 const transitionCount = ref(0)
 
 const acneScale = ref(1)
-
-onMounted(() => {
-    countDown()
-})
 
 let timeInterval
 
@@ -297,6 +305,8 @@ function startDrag(e) {
 
     document.addEventListener('touchmove', onDrag);
     document.addEventListener('touchend', stopDrag);
+    document.addEventListener('mousemove', onDrag);
+    document.addEventListener('mouseup', stopDrag);
 }
 
 function onDrag(e) {
@@ -364,6 +374,8 @@ function stopDrag() {
 
     document.removeEventListener('touchmove', onDrag);
     document.removeEventListener('touchend', stopDrag);
+    document.removeEventListener('mousemove', onDrag);
+    document.removeEventListener('mouseup', stopDrag);
 }
 
 

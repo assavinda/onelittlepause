@@ -10,7 +10,9 @@
 
     <SceneBath02test v-if="currentScene === 'Bath02'" @nextpage="setScene('Bath03')"></SceneBath02test>
 
-    <SceneBath03 v-if="currentScene === 'Bath03'" @nextpage="setScene('')"></SceneBath03>
+    <SceneBath03 v-if="currentScene === 'Bath03'" @nextpage="setScene('Bath04')"></SceneBath03>
+
+    <SceneBath04 v-if="currentScene === 'Bath04'" @nextpage="setScene('Bath05')"></SceneBath04>
 
 
 
@@ -72,7 +74,7 @@ provide("preloaded", images);
 //--SCENES MANAGEMENT--
 
 //current scene (state)
-const currentScene = ref('Bath01');
+const currentScene = ref('Bath02');
 
 //set scene function
 function setScene(sceneName) {
@@ -87,8 +89,8 @@ function setScene(sceneName) {
 }
 
 html, body {
-    overscroll-behavior: none; /* Prevent pull-to-refresh */
-    touch-action: pan-x pan-y; /* Prevent accidental gestures */
+    overscroll-behavior: none;
+    touch-action: pan-x pan-y;
 }
 
 body {
