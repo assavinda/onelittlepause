@@ -157,7 +157,7 @@
             <div class="absolute w-[45%] top-[8%]">
                 <img :src="images['bath-01-popup-bath01.png']">
             </div>
-            <div class="absolute top-[71%] left-[46%] w-[5%] cursor-pointer transition-all hover:scale-[1.05]" @click="isSuggestShow = false; countDown()">
+            <div class="absolute top-[71%] left-[47%] w-[5%] cursor-pointer transition-all hover:scale-[1.05]" @click="isSuggestShow = false; countDown()">
                 <img :src="images['general-buttonX.png']">
             </div>
         </div>
