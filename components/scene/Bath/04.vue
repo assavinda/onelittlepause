@@ -27,7 +27,7 @@
         </div>
 
         <div id="stickerImg" class="transition-all duration-700  w-full h-full absolute top-0 left-0" :class="!isBookOpen || previewImg ? 'opacity-0 pointer-events-none' : 'opacity-100'">
-            <div class="absolute bottom-[24%] right-[3.5%] w-[60%]">
+            <div id="book" class="absolute bottom-[24%] right-[3.5%] w-[60%]">
                 <img :src="images['bath-04-book-open.png']">
             </div>
 
@@ -213,7 +213,7 @@ const previewImg = ref(null)
 
 async function captureBookOnly() {
   const target = document.getElementById('stickerImg')
-  const bookEl = target?.querySelector('img[src*="book-open.png"]')
+  const bookEl = document.getElementById('book')
 
   if (!target || !bookEl) return console.warn('ไม่เจอหนังสือ')
 
