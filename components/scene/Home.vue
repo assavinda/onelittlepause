@@ -39,6 +39,8 @@
             <img :src="images['home-logo.webp']">
         </div>
 
+        <div @click="$emit('playthemesong','game-musicloop1')" class="w-full h-full absolute top-0 left-0"></div>
+
         <!-- play button -->
 
         <button @click="isStartGame = true" class="absolute top-[80%] left-[39%] w-[20%] cursor-pointer transition-all playbtn hover:scale-[1.05]">

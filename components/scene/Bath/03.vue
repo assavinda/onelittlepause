@@ -54,7 +54,7 @@
         </div>
 
         <!-- Next Button -->
-        <div @click="captureDressImg" class="absolute top-[58%] left-[78%] w-[20%] cursor-pointer">
+        <div @click="captureDressImg" class="absolute top-[58%] left-[78%] w-[20%] cursor-pointer transition-all hover:scale-[1.05]">
             <img :src="images['bath-01-next.webp']">
         </div>
 
@@ -349,8 +349,6 @@ async function captureDressImg() {
   )
 
   const imgData = croppedCanvas.toDataURL('image/png')
-
-  // Save to localStorage
   sessionStorage.setItem('capturedDress', imgData)
 
   isGoingToNext.value = true

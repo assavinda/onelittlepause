@@ -1,9 +1,15 @@
 <template>
   <section class="flex h-screen w-screen bg-black justify-center">
 
-    <SceneHome v-if="currentScene === 'Home'" @nextpage="setScene('Zones')" />
+    <audio ref="themesong" loop>
+      <source :src="`./sounds/${currentThemeSong}.mp3`" type="audio/mpeg">
+    </audio>
 
-    <SceneZones v-if="currentScene === 'Zones'" @nextpage="setScene" />
+    <SceneHome v-if="currentScene === 'Home'" @nextpage="setScene('Intro'); pauseThemeSong()" @playthemesong="playThemeSong" />
+
+    <SceneIntro v-if="currentScene === 'Intro'" @nextpage="setScene('Zones')" />
+
+    <SceneZones v-if="currentScene === 'Zones'" @nextpage="setScene" @playthemesong="playThemeSong"/>
 
     <!-- Bath Games Section -->
     <SceneBath01test v-if="currentScene === 'Bath01'" @nextpage="setScene('Bath02')"></SceneBath01test>
@@ -74,12 +80,27 @@ provide("preloaded", images);
 //--SCENES MANAGEMENT--
 
 //current scene (state)
-const currentScene = ref('Bath03');
+const currentScene = ref('Home');
 
 //set scene function
 function setScene(sceneName) {
   currentScene.value = sceneName;
 }
+
+
+//theme songs
+const themesong = ref(null);
+const currentThemeSong = ref('game-musicloop1')
+
+function playThemeSong(sound) {
+  console.log('play')
+  themesong.value.load();
+  themesong.value.play();
+};
+
+function pauseThemeSong() {
+  themesong.value.pause();
+};
 </script>
 
 <style>

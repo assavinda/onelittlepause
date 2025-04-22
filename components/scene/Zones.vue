@@ -61,6 +61,8 @@ const isSuggestShow = ref(true)
 const isLoaded = ref(false);
 const progressPercent = ref(0)
 
+let emit = defineEmits()
+
 onMounted(() => {
     checkImagesLoaded((progress) => {
         if (isLoaded.value == true) return 
@@ -76,6 +78,12 @@ onMounted(() => {
         }
         progressPercent.value = progress
     });
+});
+
+watch(isLoaded, (newValue) => {
+    if (newValue == true) {
+        emit('playthemesong','game-musicloop1')
+    }
 });
 
 </script>
