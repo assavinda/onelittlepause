@@ -39,7 +39,15 @@
             <img :src="images['home-logo.webp']">
         </div>
 
-        <div @click="$emit('playthemesong','game-musicloop1')" class="w-full h-full absolute top-0 left-0"></div>
+        <div class="w-full h-full absolute top-0 left-0"></div>
+
+        <div @click="$emit('togglesound'); $emit('playthemesong','game-musicloop1')" class="absolute top-[2%] right-[2%] w-[5%] transition-all cursor-pointer hover:scale-[1.09]">
+            <img :src="images['home-sound1.png']">
+        </div>
+
+        <div v-if="SoundState == 'off'" class="absolute top-[2.3%] right-[2.5%] w-[4%] pointer-events-none">
+            <img :src="images['home-x.png']">
+        </div>
 
         <!-- play button -->
 
@@ -56,6 +64,7 @@
 <script setup>
 const images = inject("preloaded");
 const isStartGame = ref(false);
+const { SoundState } = defineProps({ SoundState: String });
 </script>
 
 <style scoped>

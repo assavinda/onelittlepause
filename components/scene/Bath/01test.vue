@@ -230,6 +230,8 @@ function stopTime() {
 const isSuccess = ref(false)
 const isFailed = ref(false)
 
+const emit = defineEmits()
+
 watch(cleanValue, (newValue) => {
     acneScale.value = (100 - newValue) / 100;
     if (newValue >= 100 && time.value > 0) {
@@ -237,6 +239,7 @@ watch(cleanValue, (newValue) => {
         currentMood.value = 'smile'
         stopTime()
         setTimeout(() => {
+            emit('sound', 'item-pickmab')
             isSuccess.value = true
         },1000)
     }
@@ -248,6 +251,7 @@ watch(time, (newValue) => {
             isDragable.value = false
             currentMood.value = 'angry'
             setTimeout(() => {
+                emit('sound', 'failed')
                 isFailed.value = true
             },1000)
         }
@@ -365,8 +369,6 @@ function onDrag(e) {
         isCleaning.value = false
     }
 }
-
-
 
 function stopDrag() {
     isCleaning.value = false

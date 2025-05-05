@@ -47,7 +47,7 @@
         </div>
 
         <!-- Save Button -->
-        <div @click="saveDrawing" class="absolute top-[77%] right-[3%] w-[16%] cursor-pointer transition-all hover:scale-[1.05]">
+        <div @click="saveDrawing(); $emit('sound', 'digitalclick')" class="absolute top-[77%] right-[3%] w-[16%] cursor-pointer transition-all hover:scale-[1.05]">
             <img :src="images['coffee-02-save-btn.webp']">
         </div>
 

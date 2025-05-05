@@ -187,6 +187,8 @@ const isSuccess = ref(false)
 const isGoingToNext = ref(false)
 const isCleaning = ref(false)
 
+const emit = defineEmits()
+
 watch(cleanValue, (newValue) => {
     if (newValue >= 99) {
         isSuccess.value = true
@@ -267,6 +269,7 @@ function onDrag(e) {
                 console.log('cooldown')
             }
             else {
+                emit('sound', 'item-pickmab')
                 cleanValue.value += 33.33
                 isCoolingDown.value = true
                 currentMood.value = 'smile'
@@ -279,6 +282,7 @@ function onDrag(e) {
             }
             else {
                 if (cleanValue.value > 0) {
+                    emit('sound', 'miss')
                     cleanValue.value -= 33.33
                     isCoolingDown.value = true
                     currentMood.value = 'sad'
@@ -288,6 +292,7 @@ function onDrag(e) {
                     },700)
                 }
                 if (cleanValue.value <= 0) {
+                    emit('sound', 'miss')
                     cleanValue.value = 0
                     isCoolingDown.value = true
                     currentMood.value = 'sad'

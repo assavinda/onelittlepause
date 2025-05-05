@@ -101,7 +101,7 @@
         </div>
 
         <!-- Paper Popup -->
-        <div ref="paperPopup" class="absolute top-0 left-0 w-[100%] h-[100%] backdrop-blur-xs z-[100] transition-all duration-500" :class="isPopUpShow ? 'opacity-100' : 'opacity-0 pointer-events-none' ">
+        <div @transitionstart="$emit('sound', 'camera-shutter')" ref="paperPopup" class="absolute top-0 left-0 w-[100%] h-[100%] backdrop-blur-xs z-[100] transition-all duration-500" :class="isPopUpShow ? 'opacity-100' : 'opacity-0 pointer-events-none' ">
             <div class="relative w-[100%] flex justify-center pt-[7%]">
                 <div id="LetterImage" class="relative w-[40%] transition-all duration-700 origin-right" :class="isPopUpShow ? 'scale-[1]' : 'scale-[0]'">
                     <img :src="images['coffee-03-polaroid.webp']">

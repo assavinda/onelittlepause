@@ -44,6 +44,10 @@
             </div>
         </div>
 
+        <div class="absolute top-[9%] left-[39%] w-[15%] rotate-[-6deg] transition-all duration-700" :class="!isBookOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'">
+            <img :src="images['bath-04-texthere.png']">
+        </div>
+
         <div class="absolute bottom-[6%] left-[35%] w-[36%]">
             <img :src="images['bath-04-prop.png']">
         </div>
@@ -119,7 +123,7 @@
                     <img :src="images['bath-04-shoes.png']">
                 </div>
             </div>
-            <button @click="saveAsPNG" class="absolute top-[73%] right-[26%] w-[10%] cursor-pointer transition-all duration-500 hover:scale-[1.05]" :class="!isBookOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'">
+            <button @click="saveAsPNG" class="absolute top-[75%] right-[25.5%] w-[10%] cursor-pointer transition-all duration-500 hover:scale-[1.05]" :class="!isBookOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'">
                 <img :src="images['bath-04-savee.png']">
             </button>
         </div>

@@ -5,16 +5,20 @@
       <source :src="`./sounds/${currentThemeSong}.mp3`" type="audio/mpeg">
     </audio>
 
-    <SceneHome v-if="currentScene === 'Home'" @nextpage="setScene('Intro'); pauseThemeSong()" @playthemesong="playThemeSong" />
+    <audio ref="soundeffects" v-if="currentSoundEffect != ''">
+      <source :src="`./sounds/${currentSoundEffect}.mp3`" type="audio/mpeg">
+    </audio>
 
-    <SceneIntro v-if="currentScene === 'Intro'" @nextpage="setScene('Zones')" />
+    <SceneHome v-if="currentScene === 'Home'" @nextpage="setScene('Intro'); pauseThemeSong()" @togglesound="toggleSound" @playthemesong="playThemeSong" :SoundState="SoundState"/>
+
+    <SceneIntro v-if="currentScene === 'Intro'" @nextpage="setScene('Zones')" :SoundState="SoundState"/>
 
     <SceneZones v-if="currentScene === 'Zones'" @nextpage="setScene" @playthemesong="playThemeSong"/>
 
     <!-- Bath Games Section -->
-    <SceneBath01test v-if="currentScene === 'Bath01'" @nextpage="setScene('Bath02')"></SceneBath01test>
+    <SceneBath01test v-if="currentScene === 'Bath01'" @nextpage="setScene('Bath02')" @sound="playSoundEffect"></SceneBath01test>
 
-    <SceneBath02test v-if="currentScene === 'Bath02'" @nextpage="setScene('Bath03')"></SceneBath02test>
+    <SceneBath02test v-if="currentScene === 'Bath02'" @nextpage="setScene('Bath03')" @sound="playSoundEffect"></SceneBath02test>
 
     <SceneBath03 v-if="currentScene === 'Bath03'" @nextpage="setScene('Bath04')"></SceneBath03>
 
@@ -23,11 +27,11 @@
 
 
     <!-- Coffee Games Section -->
-    <SceneCoffee01 v-if="currentScene === 'Coffee01'" @nextpage="setScene('Coffee02')"></SceneCoffee01>
+    <SceneCoffee01 v-if="currentScene === 'Coffee01'" @nextpage="setScene('Coffee02')" @sound="playSoundEffect"></SceneCoffee01>
 
-    <SceneCoffee02 v-if="currentScene === 'Coffee02'" @nextpage="setScene('Coffee03')"></SceneCoffee02>
+    <SceneCoffee02 v-if="currentScene === 'Coffee02'" @nextpage="setScene('Coffee03')" @sound="playSoundEffect"></SceneCoffee02>
 
-    <SceneCoffee03 v-if="currentScene === 'Coffee03'" @nextpage="setScene('')"></SceneCoffee03>
+    <SceneCoffee03 v-if="currentScene === 'Coffee03'" @nextpage="setScene('')" @sound="playSoundEffect"></SceneCoffee03>
 
     
   </section>
@@ -55,6 +59,10 @@ onMounted(() => {
   };
 
   document.addEventListener("touchstart", preventDoubleTap, { passive: false });
+
+  document.addEventListener("mousedown", () => {
+    playSoundEffect("click");
+  });
 });
 
 
@@ -87,19 +95,53 @@ function setScene(sceneName) {
   currentScene.value = sceneName;
 }
 
+//sounds management
+const SoundState = ref('off')
+
+function toggleSound() {
+  SoundState.value == 'off' ? SoundState.value = 'on' : SoundState.value = 'off'
+  console.log(SoundState.value)
+}
+
+watch(SoundState, (State) => {
+  if (State == 'off') {
+    pauseThemeSong();
+  }
+});
+
 
 //theme songs
 const themesong = ref(null);
 const currentThemeSong = ref('game-musicloop1')
 
 function playThemeSong(sound) {
+  if (SoundState.value == 'off') return;
+
   console.log('play')
   themesong.value.load();
   themesong.value.play();
 };
 
 function pauseThemeSong() {
+
   themesong.value.pause();
+};
+
+//sound effects
+const soundeffects = ref(null)
+const currentSoundEffect = ref('')
+
+function playSoundEffect(sound) {
+  if (SoundState.value == 'off') return;
+  currentSoundEffect.value = sound;
+  nextTick(() => {
+    soundeffects.value.load();
+    soundeffects.value.play();
+  });
+};
+
+function pauseSoundEffect() {
+  soundeffects.value.pause();
 };
 </script>
 

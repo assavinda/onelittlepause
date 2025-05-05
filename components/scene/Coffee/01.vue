@@ -256,6 +256,8 @@ function pourCoffee() {
     }, pourSpeed.value);
 }
 
+
+
 watch(coffeeVolume, (newVal) => {
     if (newVal > 150) {
         setTimeout(() => {
@@ -271,8 +273,11 @@ watch(coffeeVolume, (newVal) => {
 
 })
 
+const emit = defineEmits();
+
 function recheck() {
     if (isPouring.value == false && coffeeVolume.value == 150) {
+        emit('sound', 'item-pickmab')
         isSuccess.value = true;
         console.log('success');
     }
@@ -280,6 +285,7 @@ function recheck() {
 
 watch(isFailed, (newVal) => {
     if (newVal) {
+        emit('sound', 'failed')
         isDragable.value = false;
         [pourInterval, waterInterval, coffeeInterval].forEach(clearInterval);
     }

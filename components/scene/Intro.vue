@@ -1,7 +1,7 @@
 <template>
     <GeneralContainer>
         <section class="absolute top-0 left-0">
-            <video ref="videoRef" class="w-full" playsinline>
+            <video ref="videoRef" class="w-full" :muted="SoundState === 'off'" playsinline>
                 <source src="/video/Intro.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
@@ -16,6 +16,7 @@
 <script setup>
 const images = inject('preloaded')
 const videoRef = ref(null)
+const { SoundState } = defineProps({ SoundState: String });
 const emit = defineEmits()
 onMounted(() => {
     setTimeout(() => {
