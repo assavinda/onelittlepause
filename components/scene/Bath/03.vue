@@ -348,7 +348,7 @@ async function captureDressImg() {
     0, 0, cropWidth, cropHeight
   )
 
-  const imgData = croppedCanvas.toDataURL('image/png')
+  const imgData = croppedCanvas.toDataURL('image/webp')
   sessionStorage.setItem('capturedDress', imgData)
 
   isGoingToNext.value = true
