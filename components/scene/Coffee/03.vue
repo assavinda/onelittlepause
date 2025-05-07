@@ -267,8 +267,10 @@ function saveAsPNG() {
     }
 }
 
+const emit = defineEmits()
+
 function reloadPage() {
-    window.location.reload()
+    emit('nextpage')
 }
 </script>
 

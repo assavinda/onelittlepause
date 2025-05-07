@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <div class="absolute top-[9%] left-[39%] w-[15%] rotate-[-6deg] transition-all duration-700" :class="!isBookOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'">
+        <div class="absolute top-[9%] left-[39%] w-[15%] rotate-[-6deg] transition-all duration-700" :class="!isBookOpen || previewImg ? 'opacity-0 pointer-events-none' : 'opacity-100'">
             <img :src="images['bath-04-texthere.png']">
         </div>
 
@@ -287,8 +287,10 @@ function saveAsPNG() {
     }
 }
 
+const emit = defineEmits()
+
 function reloadPage() {
-    window.location.reload()
+    emit('nextpage')
 }
 
 

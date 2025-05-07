@@ -22,7 +22,7 @@
 
     <SceneBath03 v-if="currentScene === 'Bath03'" @nextpage="setScene('Bath04')"></SceneBath03>
 
-    <SceneBath04 v-if="currentScene === 'Bath04'" @nextpage="setScene('Bath05')"></SceneBath04>
+    <SceneBath04 v-if="currentScene === 'Bath04'" @nextpage="setScene('End')"></SceneBath04>
 
 
 
@@ -31,8 +31,11 @@
 
     <SceneCoffee02 v-if="currentScene === 'Coffee02'" @nextpage="setScene('Coffee03')" @sound="playSoundEffect"></SceneCoffee02>
 
-    <SceneCoffee03 v-if="currentScene === 'Coffee03'" @nextpage="setScene('')" @sound="playSoundEffect"></SceneCoffee03>
+    <SceneCoffee03 v-if="currentScene === 'Coffee03'" @nextpage="setScene('End')" @sound="playSoundEffect"></SceneCoffee03>
 
+
+    <!-- End Scene -->
+    <SceneEnd v-if="currentScene === 'End'" @nextpage="setScene('Home')" @sound="playSoundEffect"></SceneEnd>
     
   </section>
 </template>
